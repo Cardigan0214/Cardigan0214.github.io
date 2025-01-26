@@ -8,7 +8,7 @@ menu:
 
 # Pictures shown on the sidebar
 # Use the absolute URL after generating
-# avatar: /assets/tree_small.png
+avatar: /static/img/image1.jpg
 # sidebar_background: /assets/header.png
 
 rss: /atom.xml
@@ -33,4 +33,4 @@ disqus:
   shortname:
 
 # Miscellaneous
-favicon:
+favicon: /static/img/image1.jpg
