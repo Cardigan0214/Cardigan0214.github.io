@@ -3,14 +3,13 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Cardigan0214
-subtitle: ''
-description: '你好'
-keywords: 关键词
-author: tjl
+title: 涂嘉乐的主页
+subtitle: 
+description: 
+keywords: 
+author: 
 language: en
 timezone: ''
-avatar: ../static/img/image1.jpg
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
