@@ -1,5 +1,5 @@
 ---
-title: 复分析第一周作业
+title: Complex Analysis Week 1 HW
 date: 2025-02-27 20:05:18
 categories: ['复分析']
 ---

@@ -1,5 +1,5 @@
 ---
-title: 实分析第一周作业
+title: Real Analysis Week 1 HW
 date: 2025-02-26 21:34:46
 categories: ['实分析']
 ---
