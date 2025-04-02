@@ -19,15 +19,15 @@
   <meta name="author" content="">
   <meta name="keywords" content="">
   
-    <meta name="description" content="多项分布 \[ E&#x3D;mc^2 \]">
+    <meta name="description" content="多项分布 定义1（多项分布） 称 \((X_{1},\cdots,X_{r})\) 服从参数为 \((n;p_{1},\cdots,p_{r})\) 的多项分布，若 \[     \mathbb{P}(X_{1}&#x3D;k_{1},\cdots,X_{r}&#x3D;k_{r})&#x3D;\frac{n!}{k_{1}!\cdots k_{r}!}p_{1}^{k_{1}}\cdots p_{r}^{k_{r">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多项分布与泊松分布">
 <meta property="og:url" content="https://cardigan0214.github.io/2025/04/01/PTnote1/index.html">
 <meta property="og:site_name" content="Welcome to JialeTu&#39;s homepage">
-<meta property="og:description" content="多项分布 \[ E&#x3D;mc^2 \]">
+<meta property="og:description" content="多项分布 定义1（多项分布） 称 \((X_{1},\cdots,X_{r})\) 服从参数为 \((n;p_{1},\cdots,p_{r})\) 的多项分布，若 \[     \mathbb{P}(X_{1}&#x3D;k_{1},\cdots,X_{r}&#x3D;k_{r})&#x3D;\frac{n!}{k_{1}!\cdots k_{r}!}p_{1}^{k_{1}}\cdots p_{r}^{k_{r">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-04-01T15:08:41.000Z">
-<meta property="article:modified_time" content="2025-04-01T15:37:16.826Z">
+<meta property="article:modified_time" content="2025-04-02T05:01:55.893Z">
 <meta name="twitter:card" content="summary_large_image">
   
   
@@ -220,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          7 words
+          566 words
         
       </span>
     
@@ -231,7 +231,7 @@
         
         
         
-          1 mins
+          5 mins
         
       </span>
     
@@ -273,9 +273,62 @@
             
               <div class="markdown-body">
                 
-                <p>多项分布 <span class="math display">\[
-E=mc^2
+                <h1 id="多项分布">多项分布</h1>
+<h3 id="定义1多项分布">定义1（多项分布）</h3>
+<p>称 <span class="math inline">\((X_{1},\cdots,X_{r})\)</span>
+服从参数为 <span class="math inline">\((n;p_{1},\cdots,p_{r})\)</span>
+的多项分布，若 <span class="math display">\[
+    \mathbb{P}(X_{1}=k_{1},\cdots,X_{r}=k_{r})=\frac{n!}{k_{1}!\cdots
+k_{r}!}p_{1}^{k_{1}}\cdots p_{r}^{k_{r}}
+\]</span> 这里 <span class="math inline">\(k_{1},\cdots,k_{r}\)</span>
+为非负整数，且满足 <span
+class="math inline">\(k_{1}+\cdots+k_{r}=n,p_{1}+\cdots+p_{r}=1\)</span>
+实际上对于上式中的系数，我们有 <span
+class="math display">\[\begin{align}
+\binom{n}{k_{1}}\binom{n-k_{1}}{k_{2}}\cdots
+\binom{n-(k_{1}+\cdots+k_{r-1})}{k_{r}}&amp;
+=\frac{n!}{k_{1}!(n-k_{1})!} \frac{(n-k_{1})!}{k_{2}!(n-k_{2})}\cdots
+\frac{(n-k_{1}-\cdots-k_{r-1})!}{(k_{r})!0!}\\
+&amp; =\frac{n!}{k_{1}!\cdots k_{r}!}
+\end{align}\]</span> 这表明 <span
+class="math inline">\((X_{1},\cdots,X_{r})\)</span> 发生 <span
+class="math inline">\((k_{1},\cdots,k_{r})\)</span> 次的事件共发生 <span
+class="math inline">\(\frac{n!}{k_{1}!\cdots k_{r}!}\)</span> 次</p>
+<h3 id="命题1">命题1</h3>
+<p>设称 <span class="math inline">\((X_{1},\cdots,X_{r})\)</span>
+服从参数为 <span class="math inline">\((n;p_{1},\cdots,p_{r})\)</span>
+的多项分布，则 <span class="math display">\[
+    X_{i}+X_{j}\sim B(n,p_{i}+p_{j})
 \]</span></p>
+<h4 id="证明">证明：</h4>
+<p>为方便表示，我们不妨假设 <span
+class="math inline">\(X_{i}+X_{j}=X_{1}+X_{2}\)</span> ，因为 <span
+class="math display">\[\begin{align}
+    \mathbb{P}(X_{1}=k_{1},X_{2}=k_{2})&amp;
+=\sum\limits_{k_{3}+\cdots+k_{r}=n-(k_{1}+k_{2})}\frac{n!}{k_{1}!\cdots
+k_{r}!}p_{1}^{k_{1}}\cdots p_{r}^{k_{r}}\\
+    &amp;
+=\frac{p_{1}^{k_{1}}p_{2}^{k_{2}}}{k_{1}!k_{2}!}\sum\limits_{k_{3}+\cdots+k_{r}=n-(k_{1}+k_{2})}\frac{n!}{k_{3}!\cdots
+k_{r}!}p_{3}^{k_{3}}\cdots p_{r}^{k_{r}}\\
+    &amp;
+=\frac{p_{1}^{k_{1}}p_{2}^{k_{2}}(1-p_{1}-p_{2})^{n-k_{1}-k_{2}}}{k_{1}!k_{2}!}\cdot
+\frac{n!}{(n-k_{1}-k_{2})!}\sum\limits_{k_{3}+\cdots+k_{r}=n-(k_{1}+k_{2})}\frac{(n-k_{1}-k_{2})!}{k_{3}!\cdots
+k_{r}!}\left (\frac{p_{3}}{1-p_{1}-p_{2}}\right )^{k_{3}}\cdots \left
+(\frac{p_{r}}{1-p_{1}-p_{2}}\right )^{k_{r}}\\
+    &amp;
+=\frac{n!}{k_{1}!k_{2}!(n-k_{1}-k_{2})!}p_{1}^{k_{1}}p_{2}^{k_{2}}(1-p_{1}-p_{2})^{n-k_{1}-k_{2}}
+\end{align}\]</span> 所以，对 <span class="math inline">\(\forall 0\leq
+l\leq n\)</span>，我们有 <span class="math display">\[\begin{align}
+    \mathbb{P}(X_{1}+X_{2}=l)&amp;
+=\sum\limits_{k=0}^{l}\mathbb{P}(X_{1}=k,X_{2}=l-k)\\
+    &amp;
+=\sum\limits_{k=0}^{l}\mathbb{P}(X_{1}=k)\mathbb{P}(X_{2}=l-k)\\
+    &amp;
+=\sum\limits_{k=0}^{l}\frac{n!}{k!(l-k)!(n-l)!}p_{1}^{k}p_{2}^{l-k}(1-p_{1}-p_{2})^{n-l}\\
+    &amp; =\sum\limits_{k=0}^{l}\frac{n!}{l!(n-l)!}\cdot
+\frac{l!}{k!(l-k)!}p_{1}^{k}p_{2}^{l-k}(1-p_{1}-p_{2})^{n-l}\\
+    &amp; =\binom{n}{l}(p_{1}+p_{2})^{l}(1-p_{1}-p_{2})^{n-l}\\
+\end{align}\]</span></p>
 
                 
               </div>
@@ -378,6 +431,12 @@ E=mc^2
 
 
   
+
+
+  
+  
+
+
 
 
 
@@ -570,6 +629,49 @@ E=mc^2
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
