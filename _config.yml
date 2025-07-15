@@ -28,7 +28,8 @@ archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
-skip_render: 
+skip_render:
+ - 25FallLinAlg2.html
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -116,3 +117,4 @@ mathjax:
   extension_options: {}
     # you can put your extension options here
     # see http://docs.mathjax.org/en/latest/options/input/tex.html#tex-extension-options for more detail
+
