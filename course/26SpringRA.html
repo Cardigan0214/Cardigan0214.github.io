@@ -1,558 +1,715 @@
+<!doctype html>
+<html lang="zh-CN">
 <head>
- <div style="border: 2px solid #000000; width: 1100px; margin: 0 auto;">
-<title>实分析课程主页</title>
-<meta name=Title content="实分析课程主页">
-<style type="text/css">
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>实分析课程主页</title>
+  <meta name="Title" content="实分析课程主页">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #eef8f1;
+      --surface: #ffffff;
+      --surface-soft: #f6fbf7;
+      --ink: #20352a;
+      --muted: #60756a;
+      --line: #cfe1d5;
+      --accent: #157347;
+      --accent-dark: #0f5a37;
+      --accent-soft: #dff2e7;
+      --shadow: 0 16px 40px rgba(34, 75, 49, 0.12);
+      --radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(21, 115, 71, 0.12), transparent 30rem),
+        linear-gradient(180deg, #f8fcf9 0%, var(--bg) 100%);
+      font-family: Georgia, "Times New Roman", "Noto Serif CJK SC", "Songti SC", SimSun, serif;
+      line-height: 1.72;
+    }
+
+    a {
+      color: var(--accent-dark);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(21, 115, 71, 0.28);
+    }
+
+    a:hover {
+      color: var(--accent);
+      border-bottom-color: currentColor;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 56px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 36px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow: var(--shadow);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--accent-dark);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-mark {
+      display: inline-grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border-radius: 50%;
+      color: #fff;
+      background: var(--accent);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 17px;
+    }
+
+    .language-switch {
+      display: inline-flex;
+      gap: 4px;
+      padding: 4px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+    }
+
+    .language-switch button {
+      min-width: 54px;
+      border: 0;
+      border-radius: 999px;
+      padding: 7px 12px;
+      color: var(--muted);
+      background: transparent;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .language-switch button.is-active {
+      color: #fff;
+      background: var(--accent);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(260px, 0.8fr);
+      gap: 28px;
+      align-items: end;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      font-family: "Noto Serif CJK SC", "Songti SC", SimSun, Georgia, serif;
+      font-size: clamp(2.2rem, 4vw, 4rem);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      margin-bottom: 24px;
+      color: var(--muted);
+      font-size: 1.12rem;
+    }
+
+    .quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .quick-links a,
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 7px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface-soft);
+      color: var(--accent-dark);
+      font-weight: 600;
+    }
+
+    .hero-panel {
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface-soft);
+    }
+
+    .hero-panel dl {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+    }
+
+    .hero-panel div {
+      display: grid;
+      gap: 2px;
+    }
+
+    .hero-panel dt {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .hero-panel dd {
+      margin: 0;
+      font-weight: 700;
+    }
+
+    main {
+      display: grid;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    section {
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 8px 24px rgba(34, 75, 49, 0.08);
+      scroll-margin-top: 20px;
+    }
+
+    section h2 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      font-size: 1.45rem;
+      font-family: "Noto Serif CJK SC", "Songti SC", SimSun, Georgia, serif;
+    }
+
+    section h2::before {
+      content: "";
+      width: 6px;
+      height: 24px;
+      border-radius: 6px;
+      background: var(--accent);
+    }
+
+    .notice-list,
+    .plain-list {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .notice-list li,
+    .plain-list li {
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .notice-list li::before,
+    .plain-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.78em;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .info-item {
+      padding: 15px 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface-soft);
+    }
+
+    .info-label {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .info-value {
+      font-weight: 700;
+    }
+
+    .section-intro {
+      max-width: 920px;
+      color: var(--muted);
+    }
+
+    .table-shell {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+
+    table {
+      width: 100%;
+      min-width: 920px;
+      border-collapse: collapse;
+      font-size: 0.96rem;
+      line-height: 1.55;
+    }
+
+    th,
+    td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      color: #fff;
+      background: var(--accent);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #f7fbf8;
+    }
+
+    tbody tr:hover {
+      background: var(--accent-soft);
+    }
+
+    td:first-child,
+    td:nth-child(2),
+    td:nth-child(3) {
+      white-space: nowrap;
+    }
+
+    .foot {
+      margin-top: 24px;
+      text-align: right;
+    }
+
+    .back-top {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      font-weight: 700;
+    }
+
+    @media (max-width: 820px) {
+      .page {
+        width: min(100% - 20px, 1180px);
+        padding-top: 12px;
+      }
+
+      .hero,
+      section {
+        padding: 22px;
+      }
+
+      .topbar,
+      .hero-grid {
+        align-items: stretch;
+      }
+
+      .topbar,
+      .hero-grid,
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        flex-direction: column;
+      }
+
+      .language-switch {
+        align-self: flex-start;
+      }
+
+      table {
+        min-width: 760px;
+      }
+    }
+  </style>
 </head>
+<body>
+  <div class="page" id="top">
+    <header class="hero">
+      <div class="topbar">
+        <div class="brand">
+          <span class="brand-mark">RA</span>
+          <span data-i18n="brand">中国科学技术大学 数学科学学院</span>
+        </div>
+        <div class="language-switch" aria-label="Language switch">
+          <button type="button" data-lang-button="zh" class="is-active">中文</button>
+          <button type="button" data-lang-button="en">EN</button>
+        </div>
+      </div>
 
-<body bgcolor="#ddefcd" lang=CN-CN link=blue vlink=blue style='tab-interval: .5in'>
+      <div class="hero-grid">
+        <div>
+          <h1 data-i18n="title">实分析 2026 春季学期</h1>
+          <p class="subtitle" data-i18n="subtitle">刘聪文老师《实分析》课程主页，收录课程公告、讲义、作业与习题课材料</p>
+          <nav aria-label="Primary">
+            <ul class="quick-links" id="navLinks"></ul>
+          </nav>
+        </div>
 
-<div class=Section1>
+        <aside class="hero-panel" aria-label="Course snapshot">
+          <dl id="heroFacts"></dl>
+        </aside>
+      </div>
+    </header>
 
-<br>
- 
-<br>
+    <main>
+      <section id="anno">
+        <h2 data-i18n="announcementsTitle">课程公告</h2>
+        <ul class="notice-list" id="announcements"></ul>
+      </section>
 
-<h1 align=center style='text-align:center'>
-<span style='font-family:黑体'>实分析 2026 春季学期</span>
-</h1>
+      <section id="info">
+        <h2 data-i18n="infoTitle">课程信息</h2>
+        <div class="info-grid" id="courseInfo"></div>
+      </section>
 
-<h3 align=center style='text-align:center'>
-<span style='font-family:华文中宋'><br> 中国科学技术大学 数学科学学院</span>
-</h3>
+      <section id="notes">
+        <h2 data-i18n="scheduleTitle">课程安排</h2>
+        <div class="section-intro" id="scheduleIntro"></div>
+        <div class="table-shell">
+          <table>
+            <thead>
+              <tr id="scheduleHead"></tr>
+            </thead>
+            <tbody id="scheduleBody"></tbody>
+          </table>
+        </div>
+      </section>
 
-<div class=MsoNormal align=center style='text-align:center'>
-<hr size=3 width="100%" align=center>
-</div>
+      <section id="ex">
+        <h2 data-i18n="recitationTitle">习题课</h2>
+        <div class="section-intro" id="recitationIntro"></div>
+        <div class="table-shell">
+          <table>
+            <thead>
+              <tr id="recitationHead"></tr>
+            </thead>
+            <tbody id="recitationBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
 
-<p>
-<span style='font-family:Georgia'>
-&nbsp;<a href="#anno">[课程公告]</a>
-&nbsp;<a href="#info">[课程信息]</a>
-&nbsp;<a href="#notes">[课程安排]</a> 
-&nbsp;<a href="#ex">[习题课]</a> 
-</span>
-</p>
+    <div class="foot">
+      <a class="back-top" href="#top" data-i18n="backTop">回到顶部</a>
+    </div>
+  </div>
 
-<div class=MsoNormal align=center style='text-align:center'>
-<hr size=3 width="100%" align=center>
-</div>
+  <script>
+    const link = (href, text) => `<a href="${href}">${text}</a>`;
 
+    const content = {
+      zh: {
+        pageTitle: "实分析课程主页",
+        brand: "中国科学技术大学 数学科学学院",
+        title: "实分析 2026 春季学期",
+        subtitle: "刘聪文老师《实分析》课程主页，收录课程公告、讲义、作业与习题课材料",
+        backTop: "回到顶部",
+        nav: [
+          ["#anno", "课程公告"],
+          ["#info", "课程信息"],
+          ["#notes", "课程安排"],
+          ["#ex", "习题课"]
+        ],
+        heroFacts: [
+          ["授课老师", "刘聪文"],
+          ["上课时间", "周一 1,2 节；周三 3,4 节"],
+          ["上课地点", "第五教学楼 5401"]
+        ],
+        announcementsTitle: "课程公告",
+        announcements: [
+          "欢迎大家修读刘老师的《实分析》课程！本网站内容将根据教学进度实时更新",
+          `期中考试时间拟定为 5 月 17 日；往年题见 ${link("https://ustcmathexam.github.io/", "USTC Math Exam")}；两份参考解答：${link("pdf/23mid解答.pdf", "23mid 解答")}，${link("pdf/25mid解答.pdf", "25mid 解答")}`,
+          `期末考试时间拟定为 6 月 30 日，考试范围为本学期所授内容除去抽象测度部分，请同学们合理安排复习时间；七年真题及解答：${link("pdf/RAfinal19-25.pdf", "RAfinal19-25")}`
+        ],
+        infoTitle: "课程信息",
+        info: [
+          ["授课老师", "刘聪文"],
+          ["上课时间", "1 (1,2), 3 (3,4)"],
+          ["上课地点", "第五教学楼 5401"],
+          ["分组（按学号）", "一组：学号 ≤ PB24010433；二组：PB24010434 ≤ 学号 ≤ PB24030877；三组：学号 ≥ PB24050954"],
+          ["助教", "涂嘉乐（一组）、张源意（二组）、张汇泽（三组）"],
+          ["答疑/习题课时间", "周六下午，具体时间见群公告"],
+          ["教材", "Elias M. Stein & Rami Shakarchi: Real Analysis；周民强：《实变函数论》（第三版）"],
+          ["总评（初步）", "平时 20% + 期中 30% + 期末 50%"]
+        ],
+        scheduleTitle: "课程安排",
+        scheduleIntro: [
+          "课程讲义将在课后上传",
+          `作业主要以老师上课布置的练习和 Stein 的章节习题为主。以下是助教收集的一些参考答案，仅供参考，请仔细甄别，提交作业时不要千篇一律：${link("pdf/stein solution.pdf", "Stein Solution")}、${link("pdf/Stein实分析答案RealAnalysis-solution-ch1.pdf", "Ch1")}、${link("pdf/Stein实分析答案RealAnalysis-solution-ch2.pdf", "Ch2")}、${link("pdf/Stein实分析答案RealAnalysis-solution-ch3.pdf", "Ch3")}、${link("https://analysisqualifier.blogspot.com/p/contents.html", "Analysis Qualifier")}`,
+          "纸质版作业每周一上课交，周三上课也可以补交；其余时间交电子版。当周周六 23:59 后提交视为迟交。电子版作业请以 PDF 格式发送给对应助教，文件命名为“姓名+学号+实分析第 x 周作业”，谢绝若干未扫描图片打包提交",
+          "每次作业满分 11 分。本质错误通常每题扣 0.5 分，非本质错误酌情扣分；正常时间提交的作业因错误至多扣 2 分。空题数量 ≤ 50% 时每题扣 1 分，否则每题扣 1.5 分；完全没做记 0 分，特别困难的题除外。作业若晚交 m 周，则额外扣 m 分"
+        ],
+        scheduleHeaders: ["周数", "课节", "日期", "内容（由助教总结）", "讲义", "作业", "答案"],
+        recitationTitle: "习题课",
+        recitationIntro: [
+          "习题课的实际时间请关注群公告",
+          "讲义将在习题课后上传"
+        ],
+        recitationHeaders: ["序号", "时间", "地点", "讲义"]
+      },
+      en: {
+        pageTitle: "Real Analysis Course Page",
+        brand: "School of Mathematical Sciences, USTC",
+        title: "Real Analysis, Spring 2026",
+        subtitle: "Course page for Prof. Congwen Liu's Real Analysis, with announcements, lecture notes, homework, and recitation materials",
+        backTop: "Back to top",
+        nav: [
+          ["#anno", "Announcements"],
+          ["#info", "Course Info"],
+          ["#notes", "Schedule"],
+          ["#ex", "Recitations"]
+        ],
+        heroFacts: [
+          ["Instructor", "Congwen Liu"],
+          ["Time", "Mon. periods 1-2; Wed. periods 3-4"],
+          ["Location", "Teaching Building 5, Room 5401"]
+        ],
+        announcementsTitle: "Announcements",
+        announcements: [
+          "Welcome to Prof. Liu's Real Analysis course. This page will be updated as the course proceeds",
+          `The midterm exam is tentatively scheduled for May 17. Past exams are available at ${link("https://ustcmathexam.github.io/", "USTC Math Exam")}. Two reference solutions: ${link("pdf/23mid解答.pdf", "23mid solution")} and ${link("pdf/25mid解答.pdf", "25mid solution")}`,
+          `The final exam is tentatively scheduled for June 30. The scope is all material covered this semester except the abstract measure part. Please plan your review accordingly; ${link("pdf/RAfinal19-25.pdf", "RAfinal19-25")}`
+        ],
+        infoTitle: "Course Info",
+        info: [
+          ["Instructor", "Congwen Liu"],
+          ["Class time", "1 (1,2), 3 (3,4)"],
+          ["Classroom", "Teaching Building 5, Room 5401"],
+          ["Groups by student ID", "Group 1: ID ≤ PB24010433; Group 2: PB24010434 ≤ ID ≤ PB24030877; Group 3: ID ≥ PB24050954"],
+          ["Teaching assistants", "Jiale Tu (Group 1), Yuanyi Zhang (Group 2), Huize Zhang (Group 3)"],
+          ["Office hour / recitation", "Saturday afternoon; see the course group announcement for details"],
+          ["Textbooks", "Elias M. Stein & Rami Shakarchi: Real Analysis; Minqiang Zhou: Real Variable Theory, 3rd ed."],
+          ["Grading, tentative", "Homework 20% + Midterm 30% + Final 50%"]
+        ],
+        scheduleTitle: "Schedule",
+        scheduleIntro: [
+          "Lecture notes will be uploaded after class",
+          `Homework mainly consists of in-class exercises and problems from Stein. The following reference solutions collected by the TAs are for reference only; please use them carefully and submit your own work: ${link("pdf/stein solution.pdf", "Stein Solution")}, ${link("pdf/Stein实分析答案RealAnalysis-solution-ch1.pdf", "Ch1")}, ${link("pdf/Stein实分析答案RealAnalysis-solution-ch2.pdf", "Ch2")}, ${link("pdf/Stein实分析答案RealAnalysis-solution-ch3.pdf", "Ch3")}, ${link("https://analysisqualifier.blogspot.com/p/contents.html", "Analysis Qualifier")}`,
+          "Printed homework is due in Monday's class; late printed submission is accepted in Wednesday's class. At other times, submit a PDF electronically to the corresponding TA. Homework submitted after 23:59 on Saturday of the same week is considered late. Name the file as Name + Student ID + Real Analysis Week x Homework",
+          "Each homework set is graded out of 11 points. A substantial mistake usually costs 0.5 point, while minor mistakes are handled case by case. For on-time submissions, deductions due to mistakes are capped at 2 points. If at most half of the problems are blank, each blank problem costs 1 point; otherwise each blank problem costs 1.5 points. A completely blank submission gets 0, except for exceptionally difficult problems. If a homework is m weeks late, m extra points are deducted"
+        ],
+        scheduleHeaders: ["Week", "Lecture", "Date", "Topic, summarized by TAs", "Notes", "Homework", "Solutions"],
+        recitationTitle: "Recitations",
+        recitationIntro: [
+          "Please refer to the course group announcement for the actual recitation time",
+          "Recitation notes will be uploaded after each session"
+        ],
+        recitationHeaders: ["No.", "Time", "Location", "Notes"]
+      }
+    };
 
-<h2>
-<a name=anno></a>
-&nbsp;<span style='font-family:黑体'>课程公告</span>
-</h2>
-&nbsp;&emsp;  ·欢迎大家修读刘老师的《实分析》课程！本网站内容将根据教学进度实时更新
-<br>&nbsp;&emsp;  ·期中考试时间拟定为5月17日；往年题在<a href="https://ustcmathexam.github.io/">https://ustcmathexam.github.io</a>；两份参考解答<a href="pdf/23mid解答.pdf">23mid解答</a>,<a href="pdf/25mid解答.pdf">25mid解答</a>
-<br>&nbsp;&emsp;  ·期中考试时间拟定为6月30日，考试范围为本学期所授内容除去抽象测度部分，请同学们合理安排复习时间！
+    const schedule = [
+      { week: ["一", "1"], lecture: "1", date: ["3月2日", "Mar. 2"], topic: ["绪论", "Introduction"], notes: "", homework: ["無", "None"], solution: "" },
+      { week: ["一", "1"], lecture: "2", date: ["3月4日", "Mar. 4"], topic: ["σ-代数、开集结构定理", "Sigma-algebras; structure theorem for open sets"], notes: link("pdf/RA26lect02.pdf", "RA26lect02"), homework: ["無", "None"], solution: "" },
+      { week: ["二", "2"], lecture: "3", date: ["3月9日", "Mar. 9"], topic: ["Cantor 三分集、外测度", "The Cantor ternary set; outer measure"], notes: link("pdf/RA26lect03.pdf", "RA26lect03"), homework: ["Ch1.T1,T2;P6 Lem1.2", "Ch1.T1,T2; P6 Lem1.2"], solution: link("pdf/第二周作业答案.pdf", "第二周作业答案") },
+      { week: ["二", "2"], lecture: "4", date: ["3月11日", "Mar. 11"], topic: ["外测度的性质、Lebesgue 测度", "Properties of outer measure; Lebesgue measure"], notes: link("pdf/RA26lect04.pdf", "RA26lect04"), homework: ["Ch1.T13,T19,T25; 课上的补充练习", "Ch1.T13,T19,T25; additional in-class exercises"], solution: link("pdf/第二周作业答案.pdf", "第二周作业答案") },
+      { week: ["三", "3"], lecture: "5", date: ["3月16日", "Mar. 16"], topic: ["可数可加性、测度的连续性", "Countable additivity; continuity of measure"], notes: link("pdf/RA26lect05.pdf", "RA26lect05"), homework: ["Ch1.T6,T7,T8,T16", "Ch1.T6,T7,T8,T16"], solution: link("pdf/RA第二次习题课.pdf", "第三周作业答案") },
+      { week: ["三", "3"], lecture: "6", date: ["3月18日", "Mar. 18"], topic: ["Lebesgue 可测集与 Borel 集的关系；Lebesgue 测度与线性变换；不可测集；可测函数的定义", "Lebesgue measurable sets and Borel sets; Lebesgue measure and linear maps; non-measurable sets; measurable functions"], notes: link("pdf/RA26lect06.pdf", "RA26lect06"), homework: ["Ch1.T28,T29,T33", "Ch1.T28,T29,T33"], solution: link("pdf/RA第二次习题课.pdf", "第三周作业答案") },
+      { week: ["四", "4"], lecture: "7", date: ["3月23日", "Mar. 23"], topic: ["可测函数的性质", "Properties of measurable functions"], notes: link("pdf/RA26lect07.pdf", "RA26lect07"), homework: link("pdf/RAhw20260323.pdf", "RAhw0323"), solution: link("pdf/RA第三次习题课.pdf", "第四周作业答案") },
+      { week: ["四", "4"], lecture: "8", date: ["3月25日", "Mar. 25"], topic: ["简单函数逼近定理", "Approximation by simple functions"], notes: link("pdf/RA26lect08.pdf", "RA26lect08"), homework: ["Ch1.T17,T18", "Ch1.T17,T18"], solution: link("pdf/RA第三次习题课.pdf", "第四周作业答案") },
+      { week: ["五", "5"], lecture: "9", date: ["3月30日", "Mar. 30"], topic: ["Littlewood 三原则", "Littlewood's three principles"], notes: link("pdf/RA26lect09.pdf", "RA26lect09"), homework: link("pdf/RAhw20260330.pdf", "RAhw0330"), solution: ["见下", "See below"] },
+      { week: ["五", "5"], lecture: "10", date: ["4月1日", "Apr. 1"], topic: ["非负可测函数的 Lebesgue 积分、单调收敛定理", "Lebesgue integral of nonnegative measurable functions; monotone convergence theorem"], notes: link("pdf/RA26lect10.pdf", "RA26lect10"), homework: ["無，同学们清明假期快乐", "None. Happy Qingming holiday"], solution: ["见下", "See below"] },
+      { week: ["六", "6"], lecture: "11", date: ["4月8日", "Apr. 8"], topic: ["Fatou 引理、逐项积分定理、可积函数的性质", "Fatou's lemma; termwise integration; properties of integrable functions"], notes: link("pdf/RA26lect11.pdf", "RA26lect11"), homework: link("pdf/RAhw20260408.pdf", "RAhw0408"), solution: ["见下", "See below"] },
+      { week: ["七", "7"], lecture: "12", date: ["4月13日", "Apr. 13"], topic: ["控制收敛定理及其推论、Lebesgue 积分和 Riemann 积分的关系", "Dominated convergence theorem and consequences; relation between Lebesgue and Riemann integrals"], notes: link("pdf/RA26lect12.pdf", "RA26lect12"), homework: link("pdf/RAhw20260413.pdf", "RAhw0413"), solution: link("pdf/RA第四次习题课.pdf", "第五,六,七周作业答案") },
+      { week: ["七", "7"], lecture: "13", date: ["4月15日", "Apr. 15"], topic: ["Minkowski、Hölder 不等式、L^p 空间的完备性", "Minkowski and Hölder inequalities; completeness of L^p spaces"], notes: link("pdf/RA26lect13.pdf", "RA26lect13"), homework: ["Minkowski, Hölder ineq 何时取等", "Equality cases in Minkowski and Hölder inequalities"], solution: link("pdf/RA第四次习题课.pdf", "第五,六,七周作业答案") },
+      { week: ["八", "8"], lecture: "14", date: ["4月20日", "Apr. 20"], topic: ["依范数收敛、依测度收敛、几种收敛之间的关系", "Convergence in norm; convergence in measure; relations between modes of convergence"], notes: link("pdf/RA26lect14.pdf", "RA26lect14"), homework: ["见下", "See below"], solution: link("pdf/第八周作业答案.pdf", "第八周作业答案") },
+      { week: ["八", "8"], lecture: "15", date: ["4月22日", "Apr. 22"], topic: ["稠密性定理及其应用", "Density theorem and applications"], notes: link("pdf/RA26lect15.pdf", "RA26lect15"), homework: link("pdf/RAhw20260420,0422.pdf", "RAhw0420,0422"), solution: link("pdf/第八周作业答案.pdf", "第八周作业答案") },
+      { week: ["九", "9"], lecture: "16", date: ["4月27日", "Apr. 27"], topic: ["截面、Fubini-Tonelli 定理", "Sections; Fubini-Tonelli theorem"], notes: link("pdf/RA26lect16.pdf", "RA26lect16"), homework: ["無", "None"], solution: link("pdf/第九周作业答案.pdf", "第九周作业答案") },
+      { week: ["九", "9"], lecture: "17", date: ["4月29日", "Apr. 29"], topic: ["Tonelli 定理的证明及一些应用", "Proof of Tonelli's theorem and applications"], notes: link("pdf/RA26lect17.pdf", "RA26lect17"), homework: link("pdf/RAhw20260429.pdf", "RAhw0429"), solution: link("pdf/第九周作业答案.pdf", "第九周作业答案") },
+      { week: ["十", "10"], lecture: "18", date: ["5月6日", "May 6"], topic: ["Fubini-Tonelli 定理的应用、卷积", "Applications of Fubini-Tonelli; convolution"], notes: link("pdf/RA26lect18.pdf", "RA26lect18"), homework: ["Ch2.T21,T22,T24", "Ch2.T21,T22,T24"], solution: link("pdf/第十周作业答案.pdf", "第十周作业答案") },
+      { week: ["十", "10"], lecture: "19", date: ["5月9日", "May 9"], topic: ["H-L 极大函数、Vitali 覆盖定理、Lebesgue 微分定理", "Hardy-Littlewood maximal function; Vitali covering theorem; Lebesgue differentiation theorem"], notes: link("pdf/RA26lect19.pdf", "RA26lect19"), homework: link("pdf/RAhw20260509.pdf", "RAhw0509"), solution: link("pdf/第十周作业答案.pdf", "第十周作业答案") },
+      { week: ["十一", "11"], lecture: "20", date: ["5月11日", "May 11"], topic: ["密度点、Lebesgue 点、正则收缩", "Density points; Lebesgue points; regular shrinkage"], notes: link("pdf/RA26lect20.pdf", "RA26lect20"), homework: ["Ch3.T4", "Ch3.T4"], solution: link("pdf/第十一周作业答案.pdf", "第十一周作业答案") },
+      { week: ["十一", "11"], lecture: "21", date: ["5月13日", "May 13"], topic: ["逼近恒等、有界变差函数及其性质", "Approximate identities; functions of bounded variation"], notes: link("pdf/RA26lect21.pdf", "RA26lect21"), homework: ["無", "None"], solution: link("pdf/第十一周作业答案.pdf", "第十一周作业答案") },
+      { week: ["十二", "12"], lecture: "22", date: ["5月18日", "May 18"], topic: ["Jordan 分解定理、Vitali 覆盖引理", "Jordan decomposition theorem; Vitali covering lemma"], notes: link("pdf/RA26lect22.pdf", "RA26lect22"), homework: ["补充有关 Vitali 覆盖引理的证明", "Supplementary proof of the Vitali covering lemma"], solution: link("pdf/RA第六次习题课.pdf", "第十二周作业答案") },
+      { week: ["十二", "12"], lecture: "23", date: ["5月20日", "May 20"], topic: ["单调函数微分定理", "Differentiation theorem for monotone functions"], notes: link("pdf/RA26lect23.pdf", "RA26lect23"), homework: link("pdf/RAhw20260520.pdf", "RAhw0520"), solution: link("pdf/RA第六次习题课.pdf", "第十二周作业答案") },
+      { week: ["十三", "13"], lecture: "24", date: ["5月25日", "May 25"], topic: ["导数 a.e. 为零的绝对连续函数、微积分基本定理", "Absolutely continuous functions with derivative zero a.e.; fundamental theorem of calculus"], notes: link("pdf/RA26lect24.pdf", "RA26lect24"), homework: link("pdf/RAhw20260525.pdf", "RAhw0525"), solution: link("pdf/第十三周作业答案.pdf", "第十三周作业答案") },
+      { week: ["十三", "13"], lecture: "25", date: ["5月27日", "May 27"], topic: ["可求长曲线、抽象测度", "Rectifiable curves; abstract measures"], notes: link("pdf/RA26lect25.pdf", "RA26lect25"), homework: ["無", "None"], solution: link("pdf/第十三周作业答案.pdf", "第十三周作业答案") },
+      { week: ["十四", "14"], lecture: "26", date: ["6月1日", "Jun. 1"], topic: ["B-C 引理、可测函数与非负函数积分", "Borel-Cantelli lemma; measurable functions and integrals of nonnegative functions"], notes: link("pdf/RA26lect26.pdf", "RA26lect26"), homework: ["無，同学们儿童节快乐", "None. Happy Children's Day"], solution: "" },
+      { week: ["十四", "14"], lecture: "27", date: ["6月3日", "Jun. 3"], topic: ["外测度、Carathéodory 定理、诱导测度", "Outer measure; Carathéodory theorem; induced measures"], notes: link("pdf/RA26lect27.pdf", "RA26lect27"), homework: ["無", "None"], solution: "" },
+      { week: ["十五", "15"], lecture: "28", date: ["6月8日", "Jun. 8"], topic: ["外测度延拓、半代数、乘积测度", "Extension of outer measure; semialgebras; product measures"], notes: link("pdf/RA26lect28.pdf", "RA26lect28"), homework: ["無", "None"], solution: "" },
+      { week: ["十五", "15"], lecture: "29", date: ["6月10日", "Jun. 10"], topic: ["截面、Tonelli-Fubini、单调类引理", "Sections; Tonelli-Fubini; monotone class lemma"], notes: link("pdf/RA26lect29.pdf", "RA26lect29"), homework: ["無", "None"], solution: "" }
+    ];
 
-<div class=MsoNormal align=center style='text-align:center'>
-<hr size=3 width="100%" align=center>
-</div>
+    const recitations = [
+      { no: "1", time: ["3月21日（涂嘉乐）", "Mar. 21, by Jiale Tu"], location: ["五教 5102", "Teaching Building 5, Room 5102"], notes: link("pdf/RA第一次习题课.pdf", "第一次习题课") },
+      { no: "2", time: ["3月27日（张汇泽）", "Mar. 27, by Huize Zhang"], location: ["一教 1102", "Teaching Building 1, Room 1102"], notes: link("pdf/RA第二次习题课.pdf", "第二次习题课") },
+      { no: "3", time: ["4月11日（张源意）", "Apr. 11, by Yuanyi Zhang"], location: ["五教 5104", "Teaching Building 5, Room 5104"], notes: link("pdf/RA第三次习题课.pdf", "第三次习题课") },
+      { no: "4", time: ["4月25日（张源意）", "Apr. 25, by Yuanyi Zhang"], location: ["五教 5201", "Teaching Building 5, Room 5201"], notes: link("pdf/RA第四次习题课.pdf", "第四次习题课") },
+      { no: "5", time: ["5月11日（涂嘉乐）", "May 11, by Jiale Tu"], location: ["五教 5201", "Teaching Building 5, Room 5201"], notes: link("pdf/RA第五次习题课.pdf", "第五次习题课") },
+      { no: "6", time: ["5月30日（张汇泽）", "May 30, by Huize Zhang"], location: ["", ""], notes: link("pdf/RA第六次习题课.pdf", "第六次习题课") },
+      { no: "7", time: ["6月6日（涂嘉乐）", "Jun. 6, by Jiale Tu"], location: ["五教 5104", "Teaching Building 5, Room 5104"], notes: link("pdf/RA第七次习题课.pdf", "第七次习题课") },
+    ];
 
-<h2>
-<a name=info></a>
-&nbsp;<span style='font-family:黑体'>课程信息</span>
-</h2>
+    const pick = (value, lang) => Array.isArray(value) ? value[lang === "zh" ? 0 : 1] : value;
+    const dash = (value) => value && String(value).trim() ? value : "—";
+    const getSavedLang = () => {
+      try {
+        return localStorage.getItem("ra-course-lang");
+      } catch (error) {
+        return null;
+      }
+    };
+    const saveLang = (lang) => {
+      try {
+        localStorage.setItem("ra-course-lang", lang);
+      } catch (error) {
+        /* Language switching still works if storage is unavailable. */
+      }
+    };
 
-<p>  
-<!--img src="ballred.gif" alt=o name="_x0000_i1031" border=0 id="_x0000_i1031">-->
-&nbsp;&emsp; <b><span style='font-family:新宋体'> 授课老师：</span></b>
-<span style='font-family:新宋体'> 刘聪文</span>
-</p>
+    function setText(selector, value) {
+      document.querySelectorAll(selector).forEach((el) => {
+        el.textContent = value;
+      });
+    }
 
-<p>  
-<!--<img src="ballgreen.gif" alt=o name="_x0000_i1032" border=0 id="_x0000_i1032">-->
-&nbsp;&emsp; <b><span style='font-family:新宋体'> 上课时间：</span></b>
-<span style='font-family:新宋体'> 1 (1,2), 3 (3,4)</span>
-</p>
+    function renderList(id, items) {
+      const target = document.getElementById(id);
+      const listItems = items.map((item) => `<li>${item}</li>`).join("");
+      target.innerHTML = target.tagName === "UL"
+        ? listItems
+        : `<ul class="plain-list">${listItems}</ul>`;
+    }
 
-<p>  
-<!--<img src="ballgreen.gif" alt=o name="_x0000_i1032" border=0 id="_x0000_i1032">-->
-&nbsp;&emsp; <b><span style='font-family:新宋体'>  上课地点：</span></b>
-<span style='font-family:新宋体'> 第五教学楼 5401</span>
-</p>
+    function renderInfo(items) {
+      document.getElementById("courseInfo").innerHTML = items.map(([label, value]) => `
+        <div class="info-item">
+          <span class="info-label">${label}</span>
+          <span class="info-value">${value}</span>
+        </div>
+      `).join("");
+    }
 
-<p>  
-<!--<img src="ballred.gif" alt=o name="_x0000_i1032" border=0 id="_x0000_i1032">-->
-&nbsp;&emsp; <b><span style='font-family:新宋体'> 分组（按学号）：</span></b>
-<span style='font-family:新宋体'>  一组：学号≤PB24010433；二组：PB24010434≤学号≤PB24030877；三组：学号≥PB24050954
-</p>
- 
-<p>  
-<!--<img src="ballred.gif" alt=o name="_x0000_i1032" border=0 id="_x0000_i1032">-->
-&nbsp;&emsp; <b><span style='font-family:新宋体'> 助教：</span></b>
-<span style='font-family:新宋体'>  涂嘉乐（一组）、张源意（二组）、张汇泽（三组）
-</p>
- 
-<p>  
-<!--<img src="ballgreen.gif" alt=o name="_x0000_i1032" border=0 id="_x0000_i1032">-->
-&nbsp;&emsp; <b><span style='font-family:新宋体'> 答疑/习题课时间：</span></b>
-<span style='font-family:新宋体'> 周六下午，具体时间见群公告 </span>
-</p>
+    function renderTableHead(id, headers) {
+      document.getElementById(id).innerHTML = headers.map((header) => `<th>${header}</th>`).join("");
+    }
 
-<!-- <p>  
-<!--<img src="ballgreen.gif" alt=o name="_x0000_i1032" border=0 id="_x0000_i1032">-->
-<!-- &nbsp;&emsp; <b><span style='font-family:新宋体'> 成绩计算：</span></b> -->
-<!-- <span style='font-family:新宋体'> 作业，小测，期中，期末的<font color="red">初步占比</font>依次为：20%, 10%, 30%, 40%</span>。 -->
-<!-- </p> --> 
- 
-<p>
-&nbsp;&emsp; <b><span style='font-family:新宋体'>  教材： </span></b>
-<span style='font-family:新宋体'> Elias M. Stein & Rami Shakarchi：Real analysis; 周民强：实变函数论（第三版）</span>
-</p>
+    function renderPage(lang) {
+      lang = content[lang] ? lang : "zh";
+      const t = content[lang];
+      const idx = lang === "zh" ? 0 : 1;
 
-<p>
-&nbsp;&emsp; <b><span style='font-family:新宋体'>  总评（初步）： </span></b>
-<span style='font-family:新宋体'> 平时20%+期中30%+期末50%</span>
-</p>
+      document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+      document.title = t.pageTitle;
+      setText("[data-i18n='brand']", t.brand);
+      setText("[data-i18n='title']", t.title);
+      setText("[data-i18n='subtitle']", t.subtitle);
+      setText("[data-i18n='announcementsTitle']", t.announcementsTitle);
+      setText("[data-i18n='infoTitle']", t.infoTitle);
+      setText("[data-i18n='scheduleTitle']", t.scheduleTitle);
+      setText("[data-i18n='recitationTitle']", t.recitationTitle);
+      setText("[data-i18n='backTop']", t.backTop);
 
-<!--<p><span style='font-family:Georgia'><a href="#top">[top]</a> </span></p>-->
+      document.getElementById("navLinks").innerHTML = t.nav.map(([href, text]) => `<li><a href="${href}">${text}</a></li>`).join("");
+      document.getElementById("heroFacts").innerHTML = t.heroFacts.map(([label, value]) => `
+        <div>
+          <dt>${label}</dt>
+          <dd>${value}</dd>
+        </div>
+      `).join("");
 
-<div class=MsoNormal align=center style='text-align:center'>
-<hr size=3 width="100%" align=center>
-</div>
+      renderList("announcements", t.announcements);
+      renderInfo(t.info);
+      renderList("scheduleIntro", t.scheduleIntro);
+      renderList("recitationIntro", t.recitationIntro);
+      renderTableHead("scheduleHead", t.scheduleHeaders);
+      renderTableHead("recitationHead", t.recitationHeaders);
 
+      document.getElementById("scheduleBody").innerHTML = schedule.map((row) => `
+        <tr>
+          <td>${pick(row.week, lang)}</td>
+          <td>${row.lecture}</td>
+          <td>${pick(row.date, lang)}</td>
+          <td>${pick(row.topic, lang)}</td>
+          <td>${dash(row.notes)}</td>
+          <td>${dash(pick(row.homework, lang))}</td>
+          <td>${dash(pick(row.solution, lang))}</td>
+        </tr>
+      `).join("");
 
+      document.getElementById("recitationBody").innerHTML = recitations.map((row) => `
+        <tr>
+          <td>${row.no}</td>
+          <td>${row.time[idx]}</td>
+          <td>${row.location[idx]}</td>
+          <td>${dash(row.notes)}</td>
+        </tr>
+      `).join("");
 
-<h2>
-<a name=notes></a>
-&nbsp;<span style='font-family:黑体'>课程安排</span>
-</h2>
-<!--
-<p>
-<img src="ballgreen.gif" alt=o name="_x0000_i1032" border=0 id="_x0000_i">
-<span style='font-family:新宋体'> 课程安排可能会随着课程的进行而略有变动。</span> 
-</p>
--->
-<p>
-<!--<img src="ballgreen.gif" alt=o name="_x0000_i1032" border=0 id="_x0000_i3">-->
-&nbsp;&emsp; <span style='font-family:新宋体'> 课程讲义将在课后上传</span>
-</p>
- 
-<p>
-<!--<img src="ballgreen.gif" alt=o name="_x0000_i1032" border=0 id="_x0000_i3">-->
-&nbsp;&emsp; <span style='font-family:新宋体'> 作业说明：作业主要以老师上课布置的练习和Stein的章节习题为主，以下是助教收集的一些参考答案（仅供参考，大家仔细甄别，提交作业时不要千<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 篇一律！）
-<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <a href="pdf/stein solution.pdf">Stein Solution</a>
-<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <a href="pdf/Stein实分析答案RealAnalysis-solution-ch1.pdf">Stein实分析答案RealAnalysis-Solution-Ch1</a>
-<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <a href="pdf/Stein实分析答案RealAnalysis-solution-ch2.pdf">Stein实分析答案RealAnalysis-Solution-Ch2</a>
-<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <a href="pdf/Stein实分析答案RealAnalysis-solution-ch3.pdf">Stein实分析答案RealAnalysis-Solution-Ch3</a>
-<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <a href="https://analysisqualifier.blogspot.com/p/contents.html">https://analysisqualifier.blogspot.com/p/contents.html</a>（需要梯子hh）
-</p>  
+      document.querySelectorAll("[data-lang-button]").forEach((button) => {
+        button.classList.toggle("is-active", button.dataset.langButton === lang);
+      });
 
-<p>
-<!--<img src="ballgreen.gif" alt=o name="_x0000_i1032" border=0 id="_x0000_i3">-->
-&nbsp;&emsp; <span style='font-family:新宋体'> 作业提交要求：纸质版作业每周一上课交，周三上课也可以补交，其余时间交电子版，当周周六（注意不是周日）23:59后提交的作业视为迟交；电子<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 版作业请以pdf格式邮箱或者QQ私聊发送给对应助教，文件命名为姓名+学号+实分析第x周作业，谢绝若干未扫描图片打包提交
-    
-</p>  
+      saveLang(lang);
+    }
 
-<p>
-<!--<img src="ballgreen.gif" alt=o name="_x0000_i1032" border=0 id="_x0000_i3">-->
-&nbsp;&emsp; <span style='font-family:新宋体'> 作业评分：每次作业满分11分，本质上做错一题-0.5（非本质错误酌情扣分），正常时间（未迟交情况下）提交的作业因错误至多-2分。空题数量≤50%<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 每题-1，否则每题-1.5，完全没做0分，特别困难的题除外。作业若晚交m周（以每周日00:00为准），则额外-m分。
-    
-</p> 
+    document.querySelectorAll("[data-lang-button]").forEach((button) => {
+      button.addEventListener("click", () => renderPage(button.dataset.langButton));
+    });
 
-<p>&nbsp;&emsp;以下是详细的课程信息</p>
-<!-- <p>
-&nbsp;&emsp; <span style='font-family:新宋体'> 作业答案将于该周作业提交截止后公布。</span>
-</p>
-
-<p>
-&nbsp;&emsp; <span style='font-family:新宋体'> 布置重复的题目写一次即可；上课讲过但布置成作业的题目也要写一遍。</span> -->
-</p>
- 
-<!--
-<p>
-<img src="ballgreen.gif" alt=o name="_x0000_i1032" border=0 id="_x0000_i3">
-<span style='font-family:Georgia'>  小论文：期中考试100分(含)以上选做，A+必要条件。 
-<a href="PSets/Projects2023.pdf"> 小论文选题</a></span>
-</p>  
--->
-
-
- <style>
- table,table tr th, table tr td { 
- border:2px solid;
- }
- table{ 
- border-collapse: collapse;
- }   
- </style>
-<table frame="border" rules="all" align="center" border=2px>
-
-<tr>
-
-<th> 周数 </th>
-
-<th> 课节 </th>
- 
-<th> 日期 </th>
-
-<th> 内容（由助教总结） </th>
-
-<th> 讲义 </th>
-
-<th> 作业 </th>
-
-<th> 答案 </th>
-
-</tr>
-  
-<!-- 第一周 -->
-<tr>
-<td rowspan=2>&nbsp 一 &nbsp   </td>
-<td> &nbsp 1 &nbsp   </td>
-<td> &nbsp 3月2日 &nbsp </td>
-<td> &nbsp 绪论    </td>
-<td> &nbsp&nbsp&nbsp&nbsp &emsp;&emsp;&emsp;&emsp;   &nbsp     </td>
-<td> &nbsp 無 &nbsp    </td>
-<td rowspan=2> &nbsp     &nbsp    </td>
-</tr>
- 
-<tr>
-<td>&nbsp 2 &nbsp       </td>
-<td>&nbsp 3月4日 &nbsp </td>
-<td> &nbsp &sigma;-代数、开集结构定理 &nbsp     </td>
-<td> &nbsp <a href="pdf/RA26lect02.pdf">RA26lect02</a> &nbsp     </td>
-<td> &nbsp 無 &nbsp     </td>
-</tr>
-<!-- 第二周 -->
-<tr>
-<td rowspan=2>&nbsp 二 &nbsp   </td>
-<td> &nbsp 3 &nbsp   </td>
-<td> &nbsp 3月9日 &nbsp </td>
-<td> &nbsp Cantor三分集、外测度 &nbsp    </td>
-<td> &nbsp <a href="pdf/RA26lect03.pdf">RA26lect03</a>   &nbsp     </td>
-<td> &nbsp Ch1.T1,T2;P6 Lem1.2   &nbsp    </td>
-<td rowspan=2> &nbsp <a href="pdf/第二周作业答案.pdf">第二周作业答案</a>  &nbsp    </td>
-</tr>
- 
-<tr>
-<td>&nbsp 4 &nbsp       </td>
-<td>&nbsp 3月11日 &nbsp </td>
-<td> &nbsp 外测度的性质、Lebesgue测度 &nbsp     </td>
-<td> &nbsp <a href="pdf/RA26lect04.pdf">RA26lect04</a>  &nbsp     </td>
-<td> &nbsp Ch1.T13,T19,T25;课上的补充练习 &nbsp     </td>
-</tr>
-
-<tr>
-<td rowspan=2>&nbsp 三 &nbsp   </td>
-<td> &nbsp 5 &nbsp   </td>
-<td> &nbsp 3月16日 &nbsp </td>
-<td> &nbsp 可数可加性、测度的连续性 &nbsp    </td>
-<td> &nbsp <a href="pdf/RA26lect05.pdf">RA26lect05</a>  &nbsp    </td>
-<td> &nbsp  Ch1.T6,T7,T8,T16;   &nbsp    </td>
-<td rowspan=2> &nbsp <a href="pdf/RA第二次习题课.pdf">第三周作业答案</a> &nbsp    </td>
-</tr>
- 
-<tr>
-<td>&nbsp 6 &nbsp       </td>
-<td>&nbsp 3月18日 &nbsp </td>
-<td> &nbsp Lebesgue可测集与Borel集的关系、Lebesgue &nbsp <br> &nbsp测度与线性变换、不可测集、可测函数的定义  &nbsp     </td>
-<td> &nbsp <a href="pdf/RA26lect06.pdf">RA26lect06</a>   &nbsp     </td>
-<td> &nbsp Ch1.T28,T29,T33 &nbsp     </td>
-</tr>
-
-<tr>
-<td rowspan=2>&nbsp 四 &nbsp   </td>
-<td> &nbsp 7 &nbsp   </td>
-<td> &nbsp 3月23日 &nbsp </td>
-<td> &nbsp 可测函数的性质 &nbsp    </td>
-<td> &nbsp <a href="pdf/RA26lect07.pdf">RA26lect07</a>  &nbsp    </td>
-<td> &nbsp <a href="pdf/RAhw20260323.pdf">RAhw0323</a>  &nbsp    </td>
-<td rowspan=2> &nbsp <a href="pdf/RA第三次习题课.pdf">第四周作业答案</a> &nbsp    </td>
-</tr>
- 
-<tr>
-<td>&nbsp 8 &nbsp       </td>
-<td>&nbsp 3月25日 &nbsp </td>
-<td> &nbsp 简单函数逼近定理  &nbsp     </td>
-<td> &nbsp <a href="pdf/RA26lect08.pdf">RA26lect08</a>   &nbsp     </td>
-<td> &nbsp Ch1.T17,T18  &nbsp     </td>
-</tr>
- 
-<tr>
-<td rowspan=2>&nbsp 五 &nbsp   </td>
-<td> &nbsp 9 &nbsp   </td>
-<td> &nbsp 3月30日 &nbsp </td>
-<td> &nbsp Littlewood三原则 &nbsp    </td>
-<td> &nbsp <a href="pdf/RA26lect09.pdf">RA26lect09</a>  &nbsp    </td>
-<td> &nbsp <a href="pdf/RAhw20260330.pdf">RAhw0330</a>  &nbsp    </td>
-<td rowspan=2> &nbsp 见下 &nbsp    </td>
-</tr>
- 
-<tr>
-<td>&nbsp 10 &nbsp       </td>
-<td>&nbsp 4月1日 &nbsp </td>
-<td> &nbsp 非负可测函数的Lebesgue积分、单调收敛定理  &nbsp     </td>
-<td> &nbsp <a href="pdf/RA26lect10.pdf">RA26lect10</a>  &nbsp     </td>
-<td> &nbsp 無，同学们清明假期快乐  &nbsp     </td>
-</tr>
- 
-<tr>
-<td>&nbsp 六 &nbsp   </td>
-<td> &nbsp 11 &nbsp   </td>
-<td> &nbsp 4月8日 &nbsp </td>
-<td> &nbsp Fatou引理、逐项积分定理、可积函数的性质 &nbsp    </td>
-<td> &nbsp <a href="pdf/RA26lect11.pdf">RA26lect11</a>  &nbsp    </td>
-<td> &nbsp <a href="pdf/RAhw20260408.pdf">RAhw0408</a>  &nbsp    </td>
-<td> &nbsp 见下 &nbsp    </td>
-</tr>
- 
-<tr>
-<td rowspan=2>&nbsp 七 &nbsp   </td>
-<td> &nbsp 12 &nbsp   </td>
-<td> &nbsp 4月13日 &nbsp </td>
-<td> &nbsp 控制收敛定理及其推论、Lebesgue积分和&nbsp <br> &nbsp Riemamm积分的关系 &nbsp    </td>
-<td> &nbsp <a href="pdf/RA26lect12.pdf">RA26lect12</a>  &nbsp    </td>
-<td> &nbsp <a href="pdf/RAhw20260413.pdf">RAhw0413</a>  &nbsp    </td>
-<td rowspan=2> &nbsp <a href="pdf/RA第四次习题课.pdf">第五,六,七周作业&nbsp <br>&nbsp&nbsp答案</a> &nbsp    </td>
-</tr>
- 
-<tr>
-<td>&nbsp 13 &nbsp       </td>
-<td>&nbsp 4月15日 &nbsp </td>
-<td> &nbsp Minkowski、Hölder不等式、L^p空间的完备性  &nbsp     </td>
-<td> &nbsp <a href="pdf/RA26lect13.pdf">RA26lect13</a>   &nbsp     </td>
-<td> &nbsp Minkowski,Hölder ineq何时取等  &nbsp     </td>
-</tr>
-
-<tr>
-<td rowspan=2>&nbsp 八 &nbsp   </td>
-<td> &nbsp 14 &nbsp   </td>
-<td> &nbsp 4月20日 &nbsp </td>
-<td> &nbsp 依范数收敛、依测度收敛、几种收敛之间的关系 &nbsp    </td>
-<td> &nbsp <a href="pdf/RA26lect14.pdf">RA26lect14</a>  &nbsp    </td>
-<td> &nbsp 见下  &nbsp    </td>
-<td rowspan=2> &nbsp <a href="pdf/第八周作业答案.pdf">第八周作业答案</a> &nbsp    </td>
-</tr>
- 
-<tr>
-<td>&nbsp 15 &nbsp       </td>
-<td>&nbsp 4月22日 &nbsp </td>
-<td> &nbsp 稠密性定理及其应用  &nbsp     </td>
-<td> &nbsp <a href="pdf/RA26lect15.pdf">RA26lect15</a>   &nbsp     </td>
-<td> &nbsp <a href="pdf/RAhw20260420,0422.pdf">RAhw0420,0422</a>  &nbsp     </td>
-</tr>
- 
-<tr>
-<td rowspan=2>&nbsp 九 &nbsp   </td>
-<td> &nbsp 16 &nbsp   </td>
-<td> &nbsp 4月27日 &nbsp </td>
-<td> &nbsp 截面、Fubini-Tonelli定理 &nbsp    </td>
-<td> &nbsp <a href="pdf/RA26lect16.pdf">RA26lect16</a>  &nbsp    </td>
-<td> &nbsp 無  &nbsp    </td>
-<td rowspan=2> &nbsp <a href="pdf/第九周作业答案.pdf">第九周作业答案</a> &nbsp    </td>
-</tr>
- 
-<tr>
-<td>&nbsp 17 &nbsp       </td>
-<td>&nbsp 4月29日 &nbsp </td>
-<td> &nbsp Tonelli定理的证明及一些应用  &nbsp     </td>
-<td> &nbsp <a href="pdf/RA26lect17.pdf">RA26lect17</a>   &nbsp     </td>
-<td> &nbsp <a href="pdf/RAhw20260429.pdf">RAhw0429</a>   &nbsp     </td>
-</tr>
- 
-<tr>
-<td rowspan=2>&nbsp 十 &nbsp   </td>
-<td> &nbsp 18 &nbsp   </td>
-<td> &nbsp 5月6日 &nbsp </td>
-<td> &nbsp Fubini-Tonelli定理的应用、卷积 &nbsp    </td>
-<td> &nbsp <a href="pdf/RA26lect18.pdf">RA26lect18</a>  &nbsp    </td>
-<td> &nbsp Ch2.T21,T22,T24  &nbsp    </td>
-<td rowspan=2> &nbsp <a href="pdf/第十周作业答案.pdf">第十周作业答案</a> &nbsp    </td>
-</tr>
- 
-<tr>
-<td>&nbsp 19 &nbsp       </td>
-<td>&nbsp 5月9日 &nbsp </td>
-<td> &nbsp H-L极大函数,Vitali覆盖定理,Lebesgue微分定理  &nbsp     </td>
-<td> &nbsp <a href="pdf/RA26lect19.pdf">RA26lect19</a>  &nbsp     </td>
-<td> &nbsp <a href="pdf/RAhw20260509.pdf">RAhw0509</a>  &nbsp     </td>
-</tr>
-
-<tr>
-<td rowspan=2>&nbsp 十一 &nbsp   </td>
-<td> &nbsp 20 &nbsp   </td>
-<td> &nbsp 5月11日 &nbsp </td>
-<td> &nbsp 密度点、Lebesgue点、正则收缩 &nbsp    </td>
-<td> &nbsp <a href="pdf/RA26lect20.pdf">RA26lect20</a>  &nbsp    </td>
-<td> &nbsp Ch3.T4  &nbsp    </td>
-<td rowspan=2> &nbsp <a href="pdf/第十一周作业答案.pdf">第十一周作业答案</a> &nbsp    </td>
-</tr>
- 
-<tr>
-<td>&nbsp 21 &nbsp       </td>
-<td>&nbsp 5月13日 &nbsp </td>
-<td> &nbsp 逼近恒等、有界变差函数及其性质  &nbsp     </td>
-<td> &nbsp <a href="pdf/RA26lect21.pdf">RA26lect21</a>  &nbsp     </td>
-<td> &nbsp 無  &nbsp     </td>
-</tr>
-
-<tr>
-<td rowspan=2>&nbsp 十二 &nbsp   </td>
-<td> &nbsp 22 &nbsp   </td>
-<td> &nbsp 5月18日 &nbsp </td>
-<td> &nbsp Jordan分解定理、Vitali覆盖引理 &nbsp    </td>
-<td> &nbsp <a href="pdf/RA26lect22.pdf">RA26lect22</a>  &nbsp    </td>
-<td> &nbsp 补充有关Vitali覆盖引理的证明  &nbsp    </td>
-<td rowspan=2> &nbsp <a href="pdf/RA第六次习题课.pdf">第十二周作业答案</a> &nbsp    </td>
-</tr>
- 
-<tr>
-<td>&nbsp 23 &nbsp       </td>
-<td>&nbsp 5月20日 &nbsp </td>
-<td> &nbsp 单调函数微分定理  &nbsp     </td>
-<td> &nbsp <a href="pdf/RA26lect23.pdf">RA26lect23</a>  &nbsp     </td>
-<td> &nbsp <a href="pdf/RAhw20260520.pdf">RAhw0520</a>  &nbsp     </td>
-</tr>
-
-
-<tr>
-<td rowspan=2>&nbsp 十三 &nbsp   </td>
-<td> &nbsp 24 &nbsp   </td>
-<td> &nbsp 5月25日 &nbsp </td>
-<td> &nbsp 导数a.e.为零的绝对连续函数、微积分基本定理 &nbsp    </td>
-<td> &nbsp <a href="pdf/RA26lect24.pdf">RA26lect24</a>  &nbsp    </td>
-<td> &nbsp <a href="pdf/RAhw20260525.pdf">RAhw0525</a> &nbsp    </td>
-<td rowspan=2> &nbsp <a href="pdf/第十三周作业答案.pdf">第十三周作业答案</a> &nbsp    </td>
-</tr>
- 
-<tr>
-<td>&nbsp 25 &nbsp       </td>
-<td>&nbsp 5月27日 &nbsp </td>
-<td> &nbsp 可求长曲线、抽象测度 &nbsp     </td>
-<td> &nbsp <a href="pdf/RA26lect25.pdf">RA26lect25</a>  &nbsp     </td>
-<td> &nbsp 無  &nbsp     </td>
-</tr>
-
-
-<tr>
-<td rowspan=2>&nbsp 十四 &nbsp   </td>
-<td> &nbsp 26 &nbsp   </td>
-<td> &nbsp 6月1日 &nbsp </td>
-<td> &nbsp B-C引理、可测函数与非负函数积分 &nbsp    </td>
-<td> &nbsp <a href="pdf/RA26lect26.pdf">RA26lect26</a>  &nbsp    </td>
-<td> &nbsp 無，同学们儿童节快乐 &nbsp    </td>
-<td rowspan=2> &nbsp  &nbsp    </td>
-</tr>
- 
-<tr>
-<td>&nbsp 27 &nbsp       </td>
-<td>&nbsp 6月3日 &nbsp </td>
-<td> &nbsp 外测度、Carathéodory定理、诱导测度 &nbsp     </td>
-<td> &nbsp <a href="pdf/RA26lect27.pdf">RA26lect27</a>  &nbsp     </td>
-<td> &nbsp 無  &nbsp     </td>
-</tr>
-
-<tr>
-<td rowspan=2>&nbsp 十五 &nbsp   </td>
-<td> &nbsp 28 &nbsp   </td>
-<td> &nbsp 6月8日 &nbsp </td>
-<td> &nbsp 外测度延拓、半代数、乘积测度 &nbsp    </td>
-<td> &nbsp <a href="pdf/RA26lect28.pdf">RA26lect28</a>  &nbsp    </td>
-<td> &nbsp 無 &nbsp    </td>
-<td rowspan=2> &nbsp  &nbsp    </td>
-</tr>
- 
-<tr>
-<td>&nbsp 29 &nbsp       </td>
-<td>&nbsp 6月10日 &nbsp </td>
-<td> &nbsp 截面、Tonelli-Fubini、单调类引理 &nbsp     </td>
-<td> &nbsp <a href="pdf/RA26lect29.pdf">RA26lect29</a>  &nbsp     </td>
-<td> &nbsp 無  &nbsp     </td>
-</tr>
-</table>
-
-<hr>
- 
-<h2>
-<a name=ex></a>
-&nbsp;<span style='font-family:黑体'>习题课</span>
-</h2>
-
- <p>&nbsp;&emsp; 习题课的实际时间请关注群公告。</p>
- <p>&nbsp;&emsp; 讲义将在习题课后上传。</p>
- <table frame="border" rules="all" align=center>
-
-<tr>
-
-<th>  </th>
- 
-<th> 时间 </th>
-
-<th> 地点 </th>
-
-<th> 讲义 </th>
-
-</tr>
-  
-
-<tr>
-<td>&nbsp 1 &nbsp   </td>
-<td> &nbsp 3月21日(by涂嘉乐) &nbsp </td>
-<td> &nbsp &nbsp 五教5102 &nbsp  &nbsp </td>
-<td> &nbsp <a href="pdf/RA第一次习题课.pdf">第一次习题课</a>  &nbsp </td>
-</tr>
-
-<tr>
-<td>&nbsp 2 &nbsp   </td>
-<td>&nbsp 3月27日(by张汇泽) &nbsp</td>
-<td>&nbsp &nbsp 一教1102 &nbsp &nbsp</td>
-<td>&nbsp <a href="pdf/RA第二次习题课.pdf">第二次习题课</a> &nbsp </td>
-</tr>
-
-<tr>
-<td>&nbsp 3 &nbsp   </td>
-<td>&nbsp 4月11日(by张源意) &nbsp</td>
-<td>&nbsp &nbsp 五教5104 &nbsp &nbsp</td>
-<td>&nbsp <a href="pdf/RA第三次习题课.pdf">第三次习题课</a> &nbsp </td>
-</tr>
-
-<tr>
-<td>&nbsp 4 &nbsp   </td>
-<td>&nbsp 4月25日(by张源意) &nbsp</td>
-<td>&nbsp &nbsp 五教5201 &nbsp &nbsp</td>
-<td>&nbsp <a href="pdf/RA第四次习题课.pdf">第四次习题课</a> &nbsp </td>
-</tr>
-
-<tr>
-<td>&nbsp 5 &nbsp   </td>
-<td>&nbsp 5月11日(by涂嘉乐) &nbsp</td>
-<td>&nbsp &nbsp 五教5201 &nbsp &nbsp</td>
-<td>&nbsp <a href="pdf/RA第五次习题课.pdf">第五次习题课</a> &nbsp </td>
-</tr>
-
-<tr>
-<td>&nbsp 6 &nbsp   </td>
-<td>&nbsp 5月30日(by张汇泽) &nbsp</td>
-<td>&nbsp &nbsp  &nbsp &nbsp</td>
-<td>&nbsp <a href="pdf/RA第六次习题课.pdf">第六次习题课</a> &nbsp </td>
-</tr> 
-  
-<tr>
-<td>&nbsp 7 &nbsp   </td>
-<td>&nbsp 6月6日(by涂嘉乐) &nbsp</td>
-<td>&nbsp &nbsp 五教5104 &nbsp &nbsp</td>
-<td>&nbsp <a href="pdf/RA第七次习题课.pdf">第七次习题课</a> &nbsp </td>
-</tr>
-
-<tr>
-<td>&nbsp 8 &nbsp   </td>
-<td>&nbsp  &nbsp</td>
-<td>&nbsp &nbsp  &nbsp &nbsp</td>
-<td>&nbsp  &nbsp </td>
-</tr>
- </table>
- 
- <br>
-<hr>
- 
-</div>
-&nbsp;<span style='font-family:Georgia'><a href="#top">[回到顶部]</a></span></p>
- 
+    renderPage(getSavedLang() || "zh");
+  </script>
 </body>
-
 </html>
