@@ -1,0 +1,2079 @@
+---
+layout: false
+language: zh-CN
+---
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>数学分析 B1 课程主页</title>
+  <meta name="Title" content="数学分析 B1 课程主页">
+  <meta name="description" content="中国科学技术大学数学分析 B1 MATH1006.05 课程主页">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #effbf2;
+      --bg-2: #dff6e7;
+      --surface: rgba(255, 255, 255, 0.86);
+      --surface-strong: #ffffff;
+      --surface-soft: #f7fff9;
+      --ink: #203a2a;
+      --ink-strong: #13271d;
+      --muted: #5e7d67;
+      --muted-soft: #779984;
+      --line: #aadcbc;
+      --line-soft: #d8f0df;
+      --pink: #78d891;
+      --pink-deep: #2eaa60;
+      --pink-soft: #e6f8ec;
+      --red: #208f4e;
+      --cream: #fbfffc;
+      --shadow: 0 22px 56px rgba(72, 160, 95, 0.16);
+      --radius-lg: 30px;
+      --radius-md: 18px;
+      --radius-sm: 12px;
+      --serif: Georgia, "Times New Roman", "Noto Serif CJK SC", "Songti SC", SimSun, serif;
+      --sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif;
+      --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background: linear-gradient(180deg, #fbfffc 0%, #effbf2 58%, #e5f7ea 100%);
+      font-family: var(--sans);
+      line-height: 1.72;
+      overflow-x: hidden;
+    }
+    body::before { content: none; }
+    body::after { content: none; }
+    .math-bg { display: none; }
+
+    .math-bg span {
+      position: absolute;
+      display: block;
+      white-space: nowrap;
+      user-select: none;
+      line-height: 1.15;
+      text-shadow: 0 0 1px rgba(255,255,255,0.04);
+    }
+
+    .math-bg .formula {
+      color: rgba(255,255,255,0.68);
+      letter-spacing: -0.02em;
+      font-family: "Comic Sans MS", "Bradley Hand", "Segoe Print", "Chalkboard SE", var(--sans);
+      font-weight: 700;
+    }
+
+    .math-bg .topic {
+      color: rgba(183, 238, 201, 0.40);
+      letter-spacing: 0.03em;
+      font-family: "Comic Sans MS", "Bradley Hand", "Segoe Print", "Chalkboard SE", var(--sans);
+      font-weight: 700;
+    }
+
+    .math-bg .f1 { top: 7vh; left: 4vw; font-size: clamp(1rem, 1.6vw, 1.28rem); transform: rotate(-6deg); }
+    .math-bg .f2 { top: 14vh; right: 5vw; font-size: clamp(1rem, 1.7vw, 1.32rem); transform: rotate(7deg); }
+    .math-bg .f3 { top: 28vh; left: 6vw; font-size: clamp(1.1rem, 2vw, 1.5rem); transform: rotate(-8deg); }
+    .math-bg .f4 { top: 40vh; right: 7vw; font-size: clamp(0.98rem, 1.45vw, 1.15rem); transform: rotate(9deg); }
+    .math-bg .f5 { top: 58vh; left: 8vw; font-size: clamp(1.02rem, 1.6vw, 1.25rem); transform: rotate(-5deg); }
+    .math-bg .f6 { top: 66vh; right: 10vw; font-size: clamp(1.06rem, 1.8vw, 1.4rem); transform: rotate(-10deg); }
+    .math-bg .f7 { bottom: 8vh; left: 14vw; font-size: clamp(1rem, 1.7vw, 1.3rem); transform: rotate(6deg); }
+    .math-bg .f8 { bottom: 13vh; right: 14vw; font-size: clamp(0.98rem, 1.5vw, 1.2rem); transform: rotate(-8deg); }
+    .math-bg .t1 { top: 34vh; right: 2vw; font-size: clamp(1.15rem, 1.8vw, 1.55rem); transform: rotate(-90deg); transform-origin: center; }
+    .math-bg .t2 { bottom: 4vh; left: 9vw; font-size: clamp(1rem, 1.5vw, 1.2rem); }
+
+    a {
+      color: var(--pink-deep);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(46, 170, 96, 0.30);
+      transition: color 160ms ease, border-color 160ms ease, background-color 160ms ease;
+    }
+
+    a:hover {
+      color: var(--red);
+      border-bottom-color: currentColor;
+      background: rgba(120, 216, 145, 0.12);
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 34px));
+      margin: 0 auto;
+      padding: 28px 0 56px;
+    }
+
+    .hero,
+    section {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(170, 220, 188, 0.86);
+      background: rgba(255, 255, 255, 0.90);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .hero {
+      padding: 32px;
+      border-radius: var(--radius-lg);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.96), rgba(245,255,248,0.82)),
+        var(--surface);
+    }
+    .hero::before { content: none; }
+
+    .hero::after {
+      content: "MATH1006.05";
+      position: absolute;
+      right: 24px;
+      bottom: 16px;
+      color: rgba(46, 170, 96, 0.045);
+      font-family: var(--mono);
+      font-size: clamp(3.2rem, 9vw, 7.6rem);
+      font-weight: 900;
+      letter-spacing: -0.08em;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .topbar {
+      position: relative;
+      z-index: 2;
+      display: block;
+      margin-bottom: 30px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      color: var(--ink-strong);
+      font-weight: 780;
+      letter-spacing: 0.02em;
+    }
+    .brand-mark { display: none; }
+
+    .language-switch {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: inline-flex;
+      gap: 4px;
+      padding: 5px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.88);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.72);
+    }
+
+    .language-switch button {
+      min-width: 58px;
+      border: 0;
+      border-radius: 999px;
+      padding: 7px 13px;
+      color: var(--muted);
+      background: transparent;
+      font: inherit;
+      font-size: 0.93rem;
+      cursor: pointer;
+    }
+
+    .language-switch button.is-active {
+      color: #fff;
+      background: linear-gradient(135deg, var(--pink), var(--pink-deep));
+      box-shadow: 0 8px 18px rgba(46, 170, 96, 0.22);
+      font-weight: 780;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.78fr);
+      gap: 30px;
+      align-items: end;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    .title-code {
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 14px;
+      padding: 7px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--pink-deep);
+      background: var(--surface-soft);
+      font-family: var(--mono);
+      font-size: 0.86rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin-bottom: 14px;
+      color: var(--ink-strong);
+      font-family: var(--serif);
+      font-size: clamp(2.9rem, 5.9vw, 5.6rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .title-main {
+      display: block;
+    }
+
+    .title-term {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: clamp(1.4rem, 2.7vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .subtitle {
+      max-width: 720px;
+      margin-bottom: 25px;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .quick-links a,
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 7px 14px;
+      border: 1px solid rgba(170, 220, 188, 0.9);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--pink-deep);
+      font-weight: 750;
+      box-shadow: 0 8px 18px rgba(72, 160, 95, 0.08);
+    }
+
+    .quick-links a:hover,
+    .chip:hover {
+      background: var(--pink-soft);
+      color: var(--red);
+    }
+
+    .hero-panel {
+      position: relative;
+      padding: 20px 22px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.74);
+      box-shadow: 0 16px 36px rgba(72, 160, 95, 0.12);
+    }
+
+    .hero-panel dl {
+      display: grid;
+      gap: 0;
+      margin: 0;
+    }
+
+    .hero-panel div {
+      display: grid;
+      grid-template-columns: 88px minmax(0, 1fr);
+      gap: 12px;
+      align-items: baseline;
+      padding: 11px 0;
+      border-bottom: 1px dashed var(--line-soft);
+    }
+
+    .hero-panel div:last-child {
+      border-bottom: 0;
+    }
+
+    .hero-panel dt {
+      color: var(--muted-soft);
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+
+    .hero-panel dd {
+      margin: 0;
+      color: var(--ink-strong);
+      font-weight: 850;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    section {
+      padding: 25px 28px;
+      border-radius: 24px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.92), rgba(247,255,249,0.86));
+    }
+
+    section h2 {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 13px;
+      color: var(--ink-strong);
+      font-family: var(--serif);
+      font-size: 1.42rem;
+      letter-spacing: -0.02em;
+    }
+
+    .notice-list,
+    .plain-list {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .notice-list li,
+    .plain-list li {
+      position: relative;
+      padding-left: 22px;
+      color: var(--ink);
+    }
+
+    .notice-list li::before,
+    .plain-list li::before {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: 0.78em;
+      width: 8px;
+      height: 8px;
+      border-radius: 8px 0 8px 0;
+      background: var(--pink-deep);
+      transform: rotate(45deg);
+      box-shadow: 0 0 0 4px rgba(120, 216, 145, 0.16);
+    }
+    .schedule-week,
+    .schedule-session,
+    .schedule-date {
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .schedule-week {
+      font-weight: 800;
+      vertical-align: middle;
+      color: var(--ink-strong);
+      background: rgba(255,255,255,0.32);
+    }
+
+    .schedule-session {
+      font-weight: 800;
+      color: var(--ink-strong);
+    }
+
+    .schedule-topic {
+      min-width: 390px;
+    }
+
+    .schedule-homework,
+    .schedule-solution {
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .schedule-solution {
+      vertical-align: middle;
+      background: rgba(255,255,255,0.32);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0 30px;
+      margin-top: 2px;
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .info-item {
+      display: grid;
+      grid-template-columns: 124px minmax(0, 1fr);
+      gap: 12px;
+      align-items: baseline;
+      min-height: 42px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .info-label {
+      display: block;
+      color: var(--muted-soft);
+      font-size: 0.92rem;
+      white-space: nowrap;
+    }
+
+    .info-value {
+      color: var(--ink-strong);
+      font-weight: 760;
+    }
+
+    .section-intro {
+      width: 100%;
+      max-width: none;
+      margin-bottom: 16px;
+      color: var(--muted);
+    }
+
+    .table-shell {
+      overflow-x: auto;
+      border: 1px solid var(--line-soft);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.74);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.74);
+    }
+
+    table {
+      width: 100%;
+      min-width: 900px;
+      border-collapse: collapse;
+      font-size: 0.94rem;
+      line-height: 1.52;
+    }
+
+    th,
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line-soft);
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      color: #fff;
+      background: var(--pink-deep);
+      font-weight: 820;
+      white-space: nowrap;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #f4fff7;
+    }
+
+    tbody tr:hover {
+      background: #e8f8ee;
+    }
+
+    td:first-child,
+    td:nth-child(2),
+    td:nth-child(3) {
+      white-space: nowrap;
+    }
+
+    .status {
+      display: inline-flex;
+      margin-left: 6px;
+      padding: 1px 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--pink-deep);
+      background: var(--pink-soft);
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      font-weight: 850;
+      vertical-align: 1px;
+    }
+
+    .foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-top: 20px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .back-top {
+      display: inline-flex;
+      padding: 8px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.76);
+      color: var(--pink-deep);
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 900px) {
+      .math-bg .t1 {
+        display: none;
+      }
+
+      .math-bg .f2,
+      .math-bg .f4,
+      .math-bg .f6 {
+        opacity: 0.55;
+      }
+      .math-bg .t1,
+      .math-bg .t2 {
+        display: none;
+      }
+
+      .math-bg .f2,
+      .math-bg .f4 {
+        opacity: 0.55;
+      }
+
+      .page {
+        width: min(100% - 20px, 1180px);
+        padding-top: 12px;
+      }
+
+      .hero,
+      section {
+        padding: 22px;
+      }
+
+      .topbar,
+      .hero-grid,
+      .info-grid,
+      .foot {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        margin-bottom: 28px;
+      }
+
+      .language-switch {
+        top: 0;
+        right: 0;
+      }
+
+      .hero-grid {
+        display: grid;
+      }
+
+      .hero::after {
+        right: 18px;
+        bottom: 12px;
+        font-size: clamp(2.6rem, 15vw, 4.6rem);
+      }
+
+      table {
+        min-width: 900px;
+      }
+
+      .foot {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .math-bg .t2 {
+        display: none;
+      }
+
+      .math-bg .f1,
+      .math-bg .f3,
+      .math-bg .f5,
+      .math-bg .f7,
+      .math-bg .f8 {
+        font-size: 0.82rem;
+      }
+      .math-bg .f1,
+      .math-bg .f3,
+      .math-bg .f5 {
+        font-size: 0.82rem;
+      }
+
+      .page {
+        width: min(100% - 14px, 1180px);
+      }
+
+      .hero,
+      section {
+        padding: 18px;
+        border-radius: 20px;
+      }
+
+      h1 {
+        font-size: clamp(2.4rem, 11vw, 3.5rem);
+      }
+
+      .language-switch {
+        top: 2px;
+        right: 2px;
+      }
+
+      .subtitle {
+        font-size: 1rem;
+      }
+
+      .hero-panel div,
+      .info-item {
+        grid-template-columns: 1fr;
+        gap: 2px;
+      }
+
+      .info-grid {
+        gap: 0;
+      }
+    }
+</style>
+</head>
+<body>
+  <div class="page" id="top">
+    <header class="hero">
+      <div class="topbar">
+        <div class="brand">
+          <span data-i18n="brand">中国科学技术大学 数学科学学院</span>
+        </div>
+        <div class="language-switch" aria-label="Language switch">
+          <button type="button" data-lang-button="zh" class="is-active">中文</button>
+          <button type="button" data-lang-button="en">EN</button>
+        </div>
+      </div>
+
+      <div class="hero-grid">
+        <div>
+          <span class="title-code" data-i18n="courseCode">MATH1006.05 · Analysis Core</span>
+          <h1><span class="title-main" data-i18n="titleMain">数学分析 B1</span><span class="title-term" data-i18n="titleTerm">2026 秋季学期</span></h1>
+          <p class="subtitle" data-i18n="subtitle">段雅丽老师《数学分析 B1》课程主页，收录课程公告、课程信息、讲义、作业与习题课材料</p>
+          <nav aria-label="Primary">
+            <ul class="quick-links" id="navLinks"></ul>
+          </nav>
+        </div>
+
+        <aside class="hero-panel" aria-label="Course snapshot">
+          <dl id="heroFacts"></dl>
+        </aside>
+      </div>
+    </header>
+
+    <main>
+      <section id="anno">
+        <h2 data-i18n="announcementsTitle">课程公告</h2>
+        <ul class="notice-list" id="announcements"></ul>
+      </section>
+
+      <section id="info">
+        <h2 data-i18n="infoTitle">课程信息</h2>
+        <div class="info-grid" id="courseInfo"></div>
+      </section>
+
+      <section id="notes">
+        <h2 data-i18n="scheduleTitle">课程安排</h2>
+        <div class="section-intro" id="scheduleIntro"></div>
+        <div class="table-shell">
+          <table class="schedule-table">
+            <colgroup>
+              <col style="width: 7%">
+              <col style="width: 8%">
+              <col style="width: 13%">
+              <col style="width: 42%">
+              <col style="width: 18%">
+              <col style="width: 12%">
+            </colgroup>
+            <thead>
+              <tr id="scheduleHead"></tr>
+            </thead>
+            <tbody id="scheduleBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="ex">
+        <h2 data-i18n="recitationTitle">习题课</h2>
+        <div class="section-intro" id="recitationIntro"></div>
+        <div class="table-shell">
+          <table>
+            <thead>
+              <tr id="recitationHead"></tr>
+            </thead>
+            <tbody id="recitationBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <div class="foot">
+      <span data-i18n="footerNote">页面由助教维护，内容以课程群与老师通知为准。</span>
+      <a class="back-top" href="#top" data-i18n="backTop">回到顶部</a>
+    </div>
+  </div>
+
+  <script>
+    const link = (href, text) => `<a href="${href}">${text}</a>`;
+    const status = (text) => `<span class="status">${text}</span>`;
+
+    const content = {
+      zh: {
+        pageTitle: "数学分析 B1 课程主页",
+        brand: "中国科学技术大学 数学科学学院",
+        courseCode: "MATH1006.05 · Analysis Core",
+        titleMain: "数学分析 B1",
+        titleTerm: "2026 秋季学期",
+        subtitle: "段雅丽老师《数学分析 B1》课程主页，收录课程公告、课程信息、讲义、作业与习题课材料",
+        backTop: "回到顶部",
+        footerNote: "页面由助教维护，内容以课程群与老师通知为准。",
+        nav: [
+          ["#anno", "课程公告"],
+          ["#info", "课程信息"],
+          ["#notes", "课程安排"],
+          ["#ex", "习题课"]
+        ],
+        heroFacts: [
+          ["课程编号", "MATH1006.05"],
+          ["授课老师", "段雅丽"],
+          ["上课时间", "1(3,4), 3(3,4), 5(3,4)"],
+          ["助教", "涂嘉乐、刘浩哲、王凯丽"]
+        ],
+        announcementsTitle: "课程公告",
+        announcements: [
+          `欢迎大家修读段雅丽老师的《数学分析 B1》课程！本网站会根据教学进度持续更新 ${status("INIT")}`,
+          "课程讲义、作业、答案与习题课材料会在对应栏目中更新；若链接暂未开放，则表示材料尚未上传",
+          "作业提交方式、习题课安排、考试范围与考试时间以老师和课程群通知为准，请同学们及时关注课程群公告"
+        ],
+        infoTitle: "课程信息",
+        info: [
+          ["课程名称", "数学分析B1"],
+          ["课程编号", "MATH1006.05"],
+          ["授课老师", "段雅丽"],
+          ["上课时间", "1(3,4), 3(3,4), 5(3,4)"],
+          ["上课地点", "5303"],
+          ["助教", "涂嘉乐、刘浩哲、王凯丽"],
+          ["答疑/习题课时间", "待定"],
+          ["教材/参考书", "《数学分析讲义》（第一册）（程艺、陈卿、李平）"],
+          ["作业说明", "待定"],
+          ["总评方式", "待定"]
+        ],
+        scheduleTitle: "课程安排",
+        scheduleIntro: [
+          "课程内容、讲义、作业与答案将随教学进度更新"
+        ],
+        scheduleHeaders: ["周数", "课节", "日期", "内容（由助教概括）", "作业", "答案"],
+        recitationTitle: "习题课",
+        recitationIntro: [
+          "习题课时间、地点与主讲人请以课程群通知为准",
+          "习题课讲义将在课后上传"
+        ],
+        recitationHeaders: ["序号", "时间", "地点", "讲义"],
+        pending: "待更新",
+        noLink: "—"
+      },
+      en: {
+        pageTitle: "Mathematical Analysis B1 Course Page",
+        brand: "School of Mathematical Sciences, USTC",
+        courseCode: "MATH1006.05 · Analysis Core",
+        titleMain: "Mathematical Analysis B1",
+        titleTerm: "Fall 2026",
+        subtitle: "Course page for Prof. Yali Duan's Mathematical Analysis B1, with announcements, course information, lecture notes, homework, and recitation materials",
+        backTop: "Back to top",
+        footerNote: "Maintained by the TA. Official announcements from the instructor and the course group take precedence.",
+        nav: [
+          ["#anno", "Announcements"],
+          ["#info", "Course Info"],
+          ["#notes", "Schedule"],
+          ["#ex", "Recitations"]
+        ],
+        heroFacts: [
+          ["Course code", "MATH1006.05"],
+          ["Instructor", "Yali Duan"],
+          ["Time", "1(3,4), 3(3,4), 5(3,4)"],
+          ["TAs", "Jiale Tu, Haozhe Liu, Kaili Wang"]
+        ],
+        announcementsTitle: "Announcements",
+        announcements: [
+          `Welcome to Prof. Yali Duan's Mathematical Analysis B1 course. This page will be updated as the semester proceeds ${status("INIT")}`,
+          "Lecture notes, homework, solutions, and recitation materials will be posted in the corresponding sections. Empty links mean that the materials have not been uploaded yet",
+          "Homework submission rules, recitation arrangements, exam scope, and exam dates are subject to the instructor's and course group announcements"
+        ],
+        infoTitle: "Course Info",
+        info: [
+          ["Course title", "Mathematical Analysis B1"],
+          ["Course code", "MATH1006.05"],
+          ["Instructor", "Yali Duan"],
+          ["Class time", "1(3,4), 3(3,4), 5(3,4)"],
+          ["Classroom", "5303"],
+          ["Teaching assistants", "Jiale Tu, Haozhe Liu, Kaili Wang"],
+          ["recitation", "TBD"],
+          ["Textbook", "Mathematical Analysis Lecture Notes, Vol. I (Yi Cheng, Qing Chen, Ping Li)"],
+          ["Homework", "TBD"],
+          ["Grading", "TBD"]
+        ],
+        scheduleTitle: "Schedule",
+        scheduleIntro: [
+          "Topics, notes, homework, and solutions will be updated along the semester"
+        ],
+        scheduleHeaders: ["Week", "Session", "Date", "Topic (brief notes by the TA)", "Homework", "Solutions"],
+        recitationTitle: "Recitations",
+        recitationIntro: [
+          "The actual recitation time, location, and speaker are subject to the course group announcement",
+          "Recitation notes will be uploaded after each session"
+        ],
+        recitationHeaders: ["No.", "Time", "Location", "Notes"],
+        pending: "TBA",
+        noLink: "—"
+      }
+    };
+
+    const schedule = [
+          {
+            "week": [
+                  "2",
+                  "2"
+            ],
+            "rowSpan": 3,
+            "session": "1",
+            "date": [
+                  "9月7日",
+                  "Sep. 7"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "2",
+                  "2"
+            ],
+            "rowSpan": 0,
+            "session": "2",
+            "date": [
+                  "9月9日",
+                  "Sep. 9"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "2",
+                  "2"
+            ],
+            "rowSpan": 0,
+            "session": "3",
+            "date": [
+                  "9月11日",
+                  "Sep. 11"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "3",
+                  "3"
+            ],
+            "rowSpan": 3,
+            "session": "4",
+            "date": [
+                  "9月14日",
+                  "Sep. 14"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "3",
+                  "3"
+            ],
+            "rowSpan": 0,
+            "session": "5",
+            "date": [
+                  "9月16日",
+                  "Sep. 16"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "3",
+                  "3"
+            ],
+            "rowSpan": 0,
+            "session": "6",
+            "date": [
+                  "9月18日",
+                  "Sep. 18"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "4",
+                  "4"
+            ],
+            "rowSpan": 2,
+            "session": "7",
+            "date": [
+                  "9月21日",
+                  "Sep. 21"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "4",
+                  "4"
+            ],
+            "rowSpan": 0,
+            "session": "8",
+            "date": [
+                  "9月23日",
+                  "Sep. 23"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "5",
+                  "5"
+            ],
+            "rowSpan": 2,
+            "session": "9",
+            "date": [
+                  "9月28日",
+                  "Sep. 28"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "5",
+                  "5"
+            ],
+            "rowSpan": 0,
+            "session": "10",
+            "date": [
+                  "9月30日",
+                  "Sep. 30"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "6",
+                  "6"
+            ],
+            "rowSpan": 1,
+            "session": "11",
+            "date": [
+                  "10月9日",
+                  "Oct. 9"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "7",
+                  "7"
+            ],
+            "rowSpan": 3,
+            "session": "12",
+            "date": [
+                  "10月12日",
+                  "Oct. 12"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "7",
+                  "7"
+            ],
+            "rowSpan": 0,
+            "session": "13",
+            "date": [
+                  "10月14日",
+                  "Oct. 14"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "7",
+                  "7"
+            ],
+            "rowSpan": 0,
+            "session": "14",
+            "date": [
+                  "10月16日",
+                  "Oct. 16"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "8",
+                  "8"
+            ],
+            "rowSpan": 3,
+            "session": "15",
+            "date": [
+                  "10月19日",
+                  "Oct. 19"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "8",
+                  "8"
+            ],
+            "rowSpan": 0,
+            "session": "16",
+            "date": [
+                  "10月21日",
+                  "Oct. 21"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "8",
+                  "8"
+            ],
+            "rowSpan": 0,
+            "session": "17",
+            "date": [
+                  "10月23日",
+                  "Oct. 23"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "9",
+                  "9"
+            ],
+            "rowSpan": 3,
+            "session": "18",
+            "date": [
+                  "10月26日",
+                  "Oct. 26"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "9",
+                  "9"
+            ],
+            "rowSpan": 0,
+            "session": "19",
+            "date": [
+                  "10月28日",
+                  "Oct. 28"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "9",
+                  "9"
+            ],
+            "rowSpan": 0,
+            "session": "20",
+            "date": [
+                  "10月30日",
+                  "Oct. 30"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "10",
+                  "10"
+            ],
+            "rowSpan": 3,
+            "session": "21",
+            "date": [
+                  "11月2日",
+                  "Nov. 2"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "10",
+                  "10"
+            ],
+            "rowSpan": 0,
+            "session": "22",
+            "date": [
+                  "11月4日",
+                  "Nov. 4"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "10",
+                  "10"
+            ],
+            "rowSpan": 0,
+            "session": "23",
+            "date": [
+                  "11月6日",
+                  "Nov. 6"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "11",
+                  "11"
+            ],
+            "rowSpan": 3,
+            "session": "24",
+            "date": [
+                  "11月9日",
+                  "Nov. 9"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "11",
+                  "11"
+            ],
+            "rowSpan": 0,
+            "session": "25",
+            "date": [
+                  "11月11日",
+                  "Nov. 11"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "11",
+                  "11"
+            ],
+            "rowSpan": 0,
+            "session": "26",
+            "date": [
+                  "11月13日",
+                  "Nov. 13"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "12",
+                  "12"
+            ],
+            "rowSpan": 3,
+            "session": "27",
+            "date": [
+                  "11月16日",
+                  "Nov. 16"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "12",
+                  "12"
+            ],
+            "rowSpan": 0,
+            "session": "28",
+            "date": [
+                  "11月18日",
+                  "Nov. 18"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "12",
+                  "12"
+            ],
+            "rowSpan": 0,
+            "session": "29",
+            "date": [
+                  "11月20日",
+                  "Nov. 20"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "13",
+                  "13"
+            ],
+            "rowSpan": 3,
+            "session": "30",
+            "date": [
+                  "11月23日",
+                  "Nov. 23"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "13",
+                  "13"
+            ],
+            "rowSpan": 0,
+            "session": "31",
+            "date": [
+                  "11月25日",
+                  "Nov. 25"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "13",
+                  "13"
+            ],
+            "rowSpan": 0,
+            "session": "32",
+            "date": [
+                  "11月27日",
+                  "Nov. 27"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "14",
+                  "14"
+            ],
+            "rowSpan": 3,
+            "session": "33",
+            "date": [
+                  "11月30日",
+                  "Nov. 30"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "14",
+                  "14"
+            ],
+            "rowSpan": 0,
+            "session": "34",
+            "date": [
+                  "12月2日",
+                  "Dec. 2"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "14",
+                  "14"
+            ],
+            "rowSpan": 0,
+            "session": "35",
+            "date": [
+                  "12月4日",
+                  "Dec. 4"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "15",
+                  "15"
+            ],
+            "rowSpan": 3,
+            "session": "36",
+            "date": [
+                  "12月7日",
+                  "Dec. 7"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "15",
+                  "15"
+            ],
+            "rowSpan": 0,
+            "session": "37",
+            "date": [
+                  "12月9日",
+                  "Dec. 9"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "15",
+                  "15"
+            ],
+            "rowSpan": 0,
+            "session": "38",
+            "date": [
+                  "12月11日",
+                  "Dec. 11"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "16",
+                  "16"
+            ],
+            "rowSpan": 3,
+            "session": "39",
+            "date": [
+                  "12月14日",
+                  "Dec. 14"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "16",
+                  "16"
+            ],
+            "rowSpan": 0,
+            "session": "40",
+            "date": [
+                  "12月16日",
+                  "Dec. 16"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "16",
+                  "16"
+            ],
+            "rowSpan": 0,
+            "session": "41",
+            "date": [
+                  "12月18日",
+                  "Dec. 18"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "17",
+                  "17"
+            ],
+            "rowSpan": 3,
+            "session": "42",
+            "date": [
+                  "12月21日",
+                  "Dec. 21"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "17",
+                  "17"
+            ],
+            "rowSpan": 0,
+            "session": "43",
+            "date": [
+                  "12月23日",
+                  "Dec. 23"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "17",
+                  "17"
+            ],
+            "rowSpan": 0,
+            "session": "44",
+            "date": [
+                  "12月25日",
+                  "Dec. 25"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "18",
+                  "18"
+            ],
+            "rowSpan": 2,
+            "session": "45",
+            "date": [
+                  "12月28日",
+                  "Dec. 28"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      },
+      {
+            "week": [
+                  "18",
+                  "18"
+            ],
+            "rowSpan": 0,
+            "session": "46",
+            "date": [
+                  "12月30日",
+                  "Dec. 30"
+            ],
+            "topic": [
+                  "待更新",
+                  "TBA"
+            ],
+            "homework": [
+                  "",
+                  ""
+            ],
+            "solution": [
+                  "",
+                  ""
+            ]
+      }
+];
+
+    const recitations = [
+      { no: "1", time: ["待通知", "TBA"], location: ["待通知", "TBA"], speaker: ["涂嘉乐", "Jiale Tu"], notes: "" },
+      { no: "2", time: ["待通知", "TBA"], location: ["待通知", "TBA"], speaker: ["待通知", "TBA"], notes: "" },
+      { no: "3", time: ["待通知", "TBA"], location: ["待通知", "TBA"], speaker: ["待通知", "TBA"], notes: "" },
+      { no: "4", time: ["待通知", "TBA"], location: ["待通知", "TBA"], speaker: ["待通知", "TBA"], notes: "" },
+      { no: "5", time: ["待通知", "TBA"], location: ["待通知", "TBA"], speaker: ["待通知", "TBA"], notes: "" },
+      { no: "6", time: ["待通知", "TBA"], location: ["待通知", "TBA"], speaker: ["待通知", "TBA"], notes: "" }
+    ];
+
+    const pick = (value, lang) => Array.isArray(value) ? value[lang === "zh" ? 0 : 1] : value;
+    const dash = (value, lang) => value && String(value).trim() ? value : content[lang].noLink;
+    const getSavedLang = () => {
+      try {
+        return localStorage.getItem("math-analysis-b1-lang");
+      } catch (error) {
+        return null;
+      }
+    };
+    const saveLang = (lang) => {
+      try {
+        localStorage.setItem("math-analysis-b1-lang", lang);
+      } catch (error) {
+        /* Language switching still works if storage is unavailable. */
+      }
+    };
+
+    function setText(selector, value) {
+      document.querySelectorAll(selector).forEach((el) => {
+        el.textContent = value;
+      });
+    }
+
+    function renderList(id, items) {
+      const target = document.getElementById(id);
+      const listItems = items.map((item) => `<li>${item}</li>`).join("");
+      target.innerHTML = target.tagName === "UL"
+        ? listItems
+        : `<ul class="plain-list">${listItems}</ul>`;
+    }
+
+    function renderInfo(items) {
+      document.getElementById("courseInfo").innerHTML = items.map(([label, value]) => `
+        <div class="info-item">
+          <span class="info-label">${label}</span>
+          <span class="info-value">${value}</span>
+        </div>
+      `).join("");
+    }
+
+    function renderTableHead(id, headers) {
+      document.getElementById(id).innerHTML = headers.map((header) => `<th>${header}</th>`).join("");
+    }
+
+    function renderPage(lang) {
+      lang = content[lang] ? lang : "zh";
+      const t = content[lang];
+      const idx = lang === "zh" ? 0 : 1;
+
+      document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+      document.title = t.pageTitle;
+      setText("[data-i18n='brand']", t.brand);
+      setText("[data-i18n='courseCode']", t.courseCode);
+      setText("[data-i18n='titleMain']", t.titleMain);
+      setText("[data-i18n='titleTerm']", t.titleTerm);
+      setText("[data-i18n='subtitle']", t.subtitle);
+      setText("[data-i18n='announcementsTitle']", t.announcementsTitle);
+      setText("[data-i18n='infoTitle']", t.infoTitle);
+      setText("[data-i18n='scheduleTitle']", t.scheduleTitle);
+      setText("[data-i18n='recitationTitle']", t.recitationTitle);
+      setText("[data-i18n='backTop']", t.backTop);
+      setText("[data-i18n='footerNote']", t.footerNote);
+
+      document.getElementById("navLinks").innerHTML = t.nav.map(([href, text]) => `<li><a href="${href}">${text}</a></li>`).join("");
+      document.getElementById("heroFacts").innerHTML = t.heroFacts.map(([label, value]) => `
+        <div>
+          <dt>${label}</dt>
+          <dd>${value}</dd>
+        </div>
+      `).join("");
+
+      renderList("announcements", t.announcements);
+      renderInfo(t.info);
+      renderList("scheduleIntro", t.scheduleIntro);
+      renderList("recitationIntro", t.recitationIntro);
+      renderTableHead("scheduleHead", t.scheduleHeaders);
+      renderTableHead("recitationHead", t.recitationHeaders);
+
+      document.getElementById("scheduleBody").innerHTML = schedule.map((row) => `
+        <tr>
+          ${row.rowSpan ? `<td class="schedule-week" rowspan="${row.rowSpan}">${pick(row.week, lang)}</td>` : ""}
+          <td class="schedule-session">${row.session}</td>
+          <td class="schedule-date">${pick(row.date, lang)}</td>
+          <td class="schedule-topic">${pick(row.topic, lang)}</td>
+          <td class="schedule-homework">${dash(pick(row.homework, lang), lang)}</td>
+          ${row.rowSpan ? `<td class="schedule-solution" rowspan="${row.rowSpan}">${dash(pick(row.solution, lang), lang)}</td>` : ""}
+        </tr>
+      `).join("");
+
+      document.getElementById("recitationBody").innerHTML = recitations.map((row) => `
+        <tr>
+          <td>${row.no}</td>
+          <td>${row.time[idx]}</td>
+          <td>${row.location[idx]}</td>
+          <td>${dash(row.notes, lang)}</td>
+        </tr>
+      `).join("");
+
+      document.querySelectorAll("[data-lang-button]").forEach((button) => {
+        button.classList.toggle("is-active", button.dataset.langButton === lang);
+      });
+
+      saveLang(lang);
+    }
+
+    document.querySelectorAll("[data-lang-button]").forEach((button) => {
+      button.addEventListener("click", () => renderPage(button.dataset.langButton));
+    });
+
+    renderPage(getSavedLang() || "zh");
+  </script>
+</body>
+</html>
